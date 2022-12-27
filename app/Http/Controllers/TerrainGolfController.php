@@ -55,7 +55,7 @@ class TerrainGolfController extends Controller
      */
     public function edit(TerrainGolf $terrainGolf)
     {
-        //
+        return view("TerrainGolf.edit");
     }
 
     /**

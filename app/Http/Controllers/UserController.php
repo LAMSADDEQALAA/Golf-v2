@@ -56,7 +56,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view("user.edit");
     }
 
     /**
@@ -69,6 +69,13 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+    public function EditUserRoles()
+    {
+        return view("user.EditUserRoles");
+    }
+    public function UpdateUserRoles()
+    {
     }
 
     /**

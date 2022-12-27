@@ -57,7 +57,7 @@
                     </li>
                     <li> <a class="waves-effect waves-dark" href="{{ route('image.index') }}"><i class="fa fa-table"></i><span class="hide-menu">Golf Fields Images</span></a>
                     </li>
-                    <li> <a class="waves-effect waves-dark" href="{{ route('video.index') }}"><i class="fa fa-table"></i><span class="hide-menu">Golf Fields Videos</span></a>
+                    <li> <a class="waves-effect waves-dark" href="{{ route('video.index') }}"><i class="fa fa-table"></i><span class="hide-menu">Golf Fields Video</span></a>
                     </li>
                     <li> <a class="waves-effect waves-dark" href="{{ route('ville.index') }}"><i class="fa fa-table"></i><span class="hide-menu">Cities</span></a>
                     </li>
@@ -75,7 +75,6 @@
         <!-- End Sidebar scroll-->
     </aside>
 @endsection
-
 
 @section("footer")
     <footer class="footer">

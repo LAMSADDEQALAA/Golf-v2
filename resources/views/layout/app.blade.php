@@ -1,3 +1,4 @@
+@include("AssetsMaster")
 @include("LayoutsMaster")
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -13,7 +14,6 @@
     <!-- Favicon icon -->
 
     <title>@yield('title') - GOLF</title>
-    @include('AssetsMaster')
     @yield("assets/css")
     @yield("content.css")
     </head>
@@ -33,12 +33,11 @@
                     <div class="col-md-5 align-self-center">
                         <h4 class="text-themecolor">@yield('title')</h4>
                     </div>
-
                     @isset($name)
                     <div class="col-md-7 align-self-center text-end">
                         <div class="d-flex justify-content-end align-items-center">
                             <a href="{{ route("$name.create") }}" class="btn btn-info d-none d-lg-block m-l-15 text-white"><i
-                                class="fa fa-plus-circle"></i>Create New</a>
+                                class="fa fa-plus-circle"></i> Create New</a>
                             </div>
                         </div>
                     @endisset

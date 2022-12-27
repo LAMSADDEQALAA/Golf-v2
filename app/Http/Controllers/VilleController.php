@@ -57,7 +57,7 @@ class VilleController extends Controller
      */
     public function edit(Ville $ville)
     {
-        //
+        return view("ville.edit");
     }
 
     /**

@@ -56,7 +56,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view("role.edit");
     }
 
     /**
@@ -69,6 +69,13 @@ class RoleController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+    public function EditRolePermissions()
+    {
+        return view("role.EditRolePermissions");
+    }
+    public function UpdateRolePermissions()
+    {
     }
 
     /**

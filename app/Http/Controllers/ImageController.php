@@ -57,7 +57,7 @@ class ImageController extends Controller
      */
     public function edit(Image $image)
     {
-        //
+        return view("image.edit");
     }
 
     /**

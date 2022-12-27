@@ -16,6 +16,13 @@ return new class extends Migration
         Schema::create('terraingolves', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
+            $table->string('email');
+            $table->string('lengh');
+            $table->unsignedInteger('NumHoles');
+            $table->unsignedInteger('par');
+            $table->text('phone1')->nullable();
+            $table->text('phone2')->nullable();
+            $table->text('phone3')->nullable();
             $table->text('description');
             $table->foreignId('ville_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
