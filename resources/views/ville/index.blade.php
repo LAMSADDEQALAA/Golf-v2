@@ -24,7 +24,7 @@
                         <td>
                         <div class="d-inline-block">
                             <a href="javascript:;" class="btn btn-sm btn-icon delete-record"><i class="text-primary ti ti-trash"></i></a>
-                            <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil"></i></a>
+                            <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil"  data-bs-toggle="modal" data-bs-target="#modalCenter"></i></a>
                         </div>
                         </td>
 
@@ -74,41 +74,79 @@
         </table>
     </div>
     </div>
-    <!-- Modal to add new record -->
-    <div class="offcanvas offcanvas-end" id="add-new-record">
-    <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title" id="exampleModalLabel">New Record</h5>
-        <button
-        type="button"
-        class="btn-close text-reset"
-        data-bs-dismiss="offcanvas"
-        aria-label="Close"
-        ></button>
-    </div>
-    <div class="offcanvas-body flex-grow-1">
-        <form class="add-new-record pt-0 row g-2" id="form-add-new-record" onsubmit="return false">
-        <div class="col-sm-12">
-            <label class="form-label" for="basicFullname">Full Name</label>
-            <div class="input-group input-group-merge">
-            <span id="basicFullname2" class="input-group-text"><i class="ti ti-user"></i></span>
-            <input
-                type="text"
-                id="basicFullname"
-                class="form-control dt-full-name"
-                name="basicFullname"
-                placeholder="John Doe"
-                aria-label="John Doe"
-                aria-describedby="basicFullname2"
-            />
+    <!-- Edit Model -->
+    <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalCenterTitle">City edit form</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col mb-3">
+                    <label for="exampleFormControlReadOnlyInput1" class="form-label">City</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="ville"
+                      id="exampleFormControlReadOnlyInput1"
+                      placeholder="City..."
+                      value="City"
+                    />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
         </div>
-
-        <div class="col-sm-12">
-            <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Submit</button>
-            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
-        </div>
-        </form>
     </div>
+
+    <!-- Create modal -->
+    <div class="modal fade" id="add-modal"  aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalCenterTitle">City Add Form</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col mb-3">
+                    <label for="nameWithTitle" class="form-label">City</label>
+                    <input
+                      type="text"
+                      name="ville"
+                      id="nameWithTitle"
+                      class="form-control"
+                      placeholder="Enter Name"
+                    />
+                  </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
     </div>
 
     <!--/ DataTable with Buttons -->

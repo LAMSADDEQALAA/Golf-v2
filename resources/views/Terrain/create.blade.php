@@ -42,12 +42,10 @@
         </div>
     </div>
     <div class="bs-stepper-content">
-        <form action="">
-
+        <form action="{{ route("terrain.store") }}" method="POST" enctype="multipart/form-data">
+        @csrf
         <!-- Field-Image -->
         <div id="Field-Image-Files-vertical-modern" class="content">
-
-                <!-- Multi  -->
                 <div class="content-header mb-3">
                     <h5 class="card-header">Images</h5>
                     <small>Upload Field Imgaes</small>
@@ -56,14 +54,10 @@
                     <div class="card-body">
                       <div class="mb-3">
                         <label for="formFileMultiple" class="form-label">Multiple files input example</label>
-                        <input class="form-control" type="file" id="formFileMultiple" multiple />
+                        <input class="form-control" name="file[]" type="file" id="formFileMultiple" multiple />
                       </div>
                     </div>
                     </div>
-
-
-                <!-- Multi  -->
-
             <div class="col-12 d-flex justify-content-between">
                 <a href="javascript:void(0)"  class="btn btn-label-secondary btn-prev" disabled>
                 <i class="ti ti-arrow-left me-sm-1"></i>
@@ -86,75 +80,75 @@
                 <div class="card mb-4">
                     <div class="card-body">
                       <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Nom</label>
+                        <label for="Nom" class="form-label">Nom</label>
                         <input
-                          type="email"
+                          type="text"
                           class="form-control"
-                          id="exampleFormControlInput1"
+                          id="Nom"
                           name="Nom"
                           placeholder="Nom..."
                         />
                       </div>
                       <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">address</label>
+                        <label for="address" class="form-label">address</label>
                         <input
-                          type="email"
+                          type="text"
                           class="form-control"
                           name="address"
-                          id="exampleFormControlInput1"
+                          id="address"
                           placeholder="address..."
                         />
                       </div>
                       <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Email address</label>
                         <input
-                          type="email"
+                          type="text"
                           name="email"
                           class="form-control"
-                          id="exampleFormControlInput1"
+                          id="Email"
                           placeholder="email..."
                         />
                       </div>
                       <div class="mb-3">
-                        <label for="TagifyBasic" class="form-label">Phone Numbers</label>
-                        <input id="TagifyBasic" type="number" class="form-control" name="TagifyBasic" placeholder="Phone1, Phone2, Phone3" />
+                        <label for="Phones" class="form-label">Phone Numbers</label>
+                        <input id="Phones" type="text" class="form-control" name="Phones" placeholder="Phone1, Phone2, Phone3" />
                       </div>
                       <div class="row mb-3">
                         <div class="col-2">
                             <label for="exampleFormControlInput1" class="form-label">Par</label>
                             <input
-                              type="email"
+                              type="text"
                               name="Par"
                               class="form-control"
-                              id="exampleFormControlInput1"
+                              id="Par"
                               placeholder="Par..."
                             />
                           </div>
                           <div class="col-2">
                             <label for="exampleFormControlInput1" class="form-label">Lengh</label>
                             <input
-                              type="email"
+                              type="text"
                               name="Lengh"
                               class="form-control"
-                              id="exampleFormControlInput1"
+                              id="Lengh"
                               placeholder="Lengh..."
                             />
                           </div>
                           <div class="col-2">
-                            <label for="exampleFormControlInput1" class="form-label">Number of Holes</label>
+                            <label for="NumHoles" class="form-label">Number of Holes</label>
                             <input
-                              type="email"
+                              type="text"
                               name="NumHoles"
                               class="form-control"
-                              id="exampleFormControlInput1"
+                              id="NumHoles"
                               placeholder="Number of Holes..."
                             />
                           </div>
                       </div>
 
                       <div class="mb-3">
-                        <label class="form-label" for="collapsible-state">Villes</label>
-                        <select id="collapsible-state" class="select2 form-select" data-allow-clear="true">
+                        <label class="form-label" for="Villes">Villes</label>
+                        <select id="Villes" name="villes" class="select2 form-select" data-allow-clear="true">
                           <option value="">Select</option>
                           <option value="AL">Alabama</option>
                           <option value="AK">Alaska</option>
@@ -210,8 +204,8 @@
                         </select>
                       </div>
                       <div>
-                        <label for="exampleFormControlTextarea1" class="form-label">Descriptions</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <label for="Descriptions" class="form-label">Descriptions</label>
+                        <textarea class="form-control" name="description" id="Descriptions" rows="3"></textarea>
                       </div>
                     </div>
                   </div>
@@ -238,9 +232,9 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="mb-3">
-                    <label for="TagifyBasic" class="form-label">Links</label>
-                    <input id="TagifyBasic" cols="30" rows="20" class="form-control" name="TagifyBasic" placeholder="Tag1, Tag2, Tag3" />
-                        </div>
+                            <label for="Links" class="form-label">Links</label>
+                            <input id="Links" type="text" class="form-control" name="videolinks" placeholder="Link1, Link2, Link3" />
+                          </div>
                    </div>
                 </div>
 

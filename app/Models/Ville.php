@@ -10,14 +10,10 @@ class Ville extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
 
-    /**
-     * Get all of the TerrainGolfs for the Ville
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function TerrainGolfs(): HasMany
+    public function Terrains(): HasMany
     {
-        return $this->hasMany(TerrainGolf::class);
+        return $this->hasMany(Terrain::class);
     }
 }

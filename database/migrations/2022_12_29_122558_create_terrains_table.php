@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('terraingolves', function (Blueprint $table) {
+        Schema::create('terrains', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
             $table->string('email');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('phone2')->nullable();
             $table->string('phone3')->nullable();
             $table->text('description');
-            $table->foreignId('ville_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('ville_id')->constrained();
             $table->timestamps();
         });
     }
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('terrain_golves');
+        Schema::dropIfExists('terrains');
     }
 };

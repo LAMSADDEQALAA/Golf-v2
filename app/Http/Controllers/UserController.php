@@ -19,17 +19,6 @@ class UserController extends Controller
     {
         return view("user.index");
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view("user.create");
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -40,29 +29,6 @@ class UserController extends Controller
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        return view("user.edit");
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -74,14 +40,9 @@ class UserController extends Controller
     {
         //
     }
-    public function EditUserRoles()
-    {
-        return view("user.EditUserRoles");
-    }
     public function UpdateUserRoles()
     {
     }
-
     /**
      * Remove the specified resource from storage.
      *

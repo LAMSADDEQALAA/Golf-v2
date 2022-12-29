@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             if (Newterrain) {
                 Newterrain.addEventListener(
                     "click",
-                    () => (window.location.href = "/terraingolf/create")
+                    () => (window.location.href = "/terrain/create")
                 );
             }
 
@@ -170,10 +170,16 @@ $(function () {
                     ],
                 },
                 {
-                    text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modalAdd">Add New Record</span>',
+                    text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block z-n1">Add New Record</span>',
                     className: !dt_basic_table.attr("data-Show")
-                        ? "create-new btn btn-primary"
+                        ? "btn btn-primary"
                         : "create-Terrain btn btn-primary",
+                    attr: !dt_basic_table.attr("data-Show")
+                        ? {
+                              "data-bs-toggle": "modal",
+                              "data-bs-target": "#add-modal",
+                          }
+                        : null,
                 },
             ],
         }));

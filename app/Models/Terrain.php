@@ -8,9 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class TerrainGolf extends Model
+class Terrain extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
 
     /**
      * Get all of the Image for the User
@@ -27,9 +30,9 @@ class TerrainGolf extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function Video(): HasOne
+    public function Videos(): HasMany
     {
-        return $this->hasOne(Video::class);
+        return $this->hasMany(Video::class);
     }
     /**
      * Get the Ville that owns the TerrainGolf

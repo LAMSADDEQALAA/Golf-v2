@@ -7,6 +7,8 @@
 (function () {
     // Basic
     //------------------------------------------------------
-    const tagifyBasicEl = document.querySelector("#TagifyBasic");
-    const TagifyBasic = new Tagify(tagifyBasicEl);
+    const Phones = document.querySelector("#Phones");
+    const Links = document.querySelector("#Links");
+    const TagifyPhones = new Tagify(Phones);
+    const TagifyLinks = new Tagify(Links);
 })();

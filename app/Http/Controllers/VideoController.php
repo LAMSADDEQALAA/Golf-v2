@@ -20,17 +20,6 @@ class VideoController extends Controller
     {
         return view("video.index");
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view("video.create");
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -41,29 +30,6 @@ class VideoController extends Controller
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Video  $video
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Video $video)
-    {
-        return view("video.edit");
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Video  $video
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Video $video)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *

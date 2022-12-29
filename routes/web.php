@@ -3,7 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\TerrainGolfController;
+use App\Http\Controllers\TerrainController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\VilleController;
@@ -21,16 +21,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('auth.login');
 })->name("login");
 
-Route::get("/editRolePerm", [RoleController::class, 'EditRolePermissions'])->name('editRolePerm');
-Route::get("/editUserRoles", [UserController::class, 'EditUserRoles'])->name('editUserRoles');
+Route::get("role/UpdateRolePerm", [RoleController::class, 'UpdateRolePermissions'])->name('role.UpdateRolePerm');
+Route::get("user/UpdateUserRoles", [UserController::class, 'UpdateUserRoles'])->name('user.UpdateUserRoles');
+Route::get("user/AccountSettings", [UserController::class, "AccountSettings"])->name('user.AccountSettings');
+// Route::get("terrain/store", [TerrainController::class, "store"]);
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::resource('terraingolf', TerrainGolfController::class);
+Route::resource('terrain', TerrainController::class);
 Route::resource('user', UserController::class);
 Route::resource('role', RoleController::class);
 Route::resource('ville', VilleController::class);
@@ -39,6 +41,7 @@ Route::resource('video', VideoController::class);
 
 Route::get("/logout", function () {
     Auth::logout();
+    return redirect("/login");
 })->name('logout');
 
 Auth::routes();

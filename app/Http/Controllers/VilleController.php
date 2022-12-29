@@ -20,17 +20,6 @@ class VilleController extends Controller
     {
         return view("ville.index");
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view("ville.create");
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -40,28 +29,6 @@ class VilleController extends Controller
     public function store(Request $request)
     {
         //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Ville  $ville
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Ville $ville)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ville  $ville
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Ville $ville)
-    {
-        return view("ville.edit");
     }
 
     /**

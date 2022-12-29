@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
-class TerrainGolfSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,5 +15,6 @@ class TerrainGolfSeeder extends Seeder
      */
     public function run()
     {
+        Role::create(['name' => "Super-Admin"]);
     }
 }

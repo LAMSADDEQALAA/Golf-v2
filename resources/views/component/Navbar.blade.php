@@ -1,5 +1,5 @@
 <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
-    <div class="container-fluid">
+    <div class="container-xxl">
       <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
         <a href="index.html" class="app-brand-link gap-2">
           <span class="app-brand-logo demo">
@@ -52,23 +52,23 @@
           <!-- Style Switcher -->
           <li class="nav-item me-2 me-xl-0">
             <a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);">
-              <i class="ti ti-md"></i>
+              <i class="ti ti-md "></i>
             </a>
           </li>
           <!--/ Style Switcher -->
 
 
           <!-- User -->
-          <li class="nav-item navbar-dropdown dropdown-user dropdown">
+          <li class="nav-item navbar-dropdown dropdown-user dropdown me-xl-0">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                <i class="fa-sharp fa-solid fa-circle-user" style="transform: scale(1.6)"></i>
+                <i class="fa-sharp fa-solid fa-circle-user mt-2" style="transform: scale(2.3)"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
 
                 <div class="dropdown-divider"></div>
               </li>
               <li>
-                <a class="dropdown-item" href="pages-account-settings-account.html">
+                <a class="dropdown-item" href="{{ route("user.AccountSettings") }}">
                   <i class="ti ti-settings me-2 ti-sm"></i>
                   <span class="align-middle">Settings</span>
                 </a>
@@ -77,7 +77,7 @@
                 <div class="dropdown-divider"></div>
               </li>
               <li>
-                <a class="dropdown-item" href="{{ route('logout') }}" target="_blank">
+                <a class="dropdown-item" href="{{ route('logout') }}" >
                   <i class="ti ti-logout me-2 ti-sm"></i>
                   <span class="align-middle">Log Out</span>
                 </a>

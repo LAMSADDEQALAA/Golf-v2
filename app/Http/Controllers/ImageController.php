@@ -20,17 +20,6 @@ class ImageController extends Controller
     {
         return view("image.index");
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view("image.create");
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -41,29 +30,6 @@ class ImageController extends Controller
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Image $image)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Image $image)
-    {
-        return view("image.edit");
-    }
-
     /**
      * Update the specified resource in storage.
      *

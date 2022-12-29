@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TerrainGolf;
+use App\Models\Terrain;
 use Illuminate\Http\Request;
+use \Illuminate\Support\Collection;
 
-class TerrainGolfController extends Controller
+use function PHPSTORM_META\map;
+
+class TerrainController extends Controller
 {
     public function __construct()
     {
@@ -18,7 +21,7 @@ class TerrainGolfController extends Controller
      */
     public function index()
     {
-        return view("TerrainGolf.index");
+        return view("Terrain.index");
     }
 
     /**
@@ -28,7 +31,7 @@ class TerrainGolfController extends Controller
      */
     public function create()
     {
-        return view("TerrainGolf.create");
+        return view("Terrain.create");
     }
 
     /**
@@ -39,37 +42,46 @@ class TerrainGolfController extends Controller
      */
     public function store(Request $request)
     {
+        $tab = collect($request->only("Phones"));
+
+        // dd($phones);
+
+
+
+         $data = array_values(json_decode($tab["Phones"], true));
+
+        dd($data[0]["value"]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TerrainGolf  $terrainGolf
+     * @param  \App\Models\Terrain  $terrain
      * @return \Illuminate\Http\Response
      */
-    public function show(TerrainGolf $terrainGolf)
+    public function show(Terrain $terrain)
     {
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TerrainGolf  $terrainGolf
+     * @param  \App\Models\Terrain  $terrain
      * @return \Illuminate\Http\Response
      */
-    public function edit(TerrainGolf $terrainGolf)
+    public function edit(Terrain $terrain)
     {
-        return view("TerrainGolf.edit");
+        return view("Terrain.edit");
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TerrainGolf  $terrainGolf
+     * @param  \App\Models\Terrain  $terrain
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TerrainGolf $terrainGolf)
+    public function update(Request $request, Terrain $terrain)
     {
         //
     }
@@ -77,10 +89,10 @@ class TerrainGolfController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TerrainGolf  $terrainGolf
+     * @param  \App\Models\Terrain  $terrain
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TerrainGolf $terrainGolf)
+    public function destroy(Terrain $terrain)
     {
         //
     }
