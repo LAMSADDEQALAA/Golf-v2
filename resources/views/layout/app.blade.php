@@ -1,75 +1,80 @@
 @include("AssetsMaster")
-@include("LayoutsMaster")
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="{{ asset('assets/') }}"
+  data-template="horizontal-menu-template"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Favicon icon -->
+    <title>Fluid - Layouts | Vuexy - Bootstrap Admin Template</title>
 
-    <title>@yield('title') - GOLF</title>
-    @yield("assets/css")
-    @yield("content.css")
-    </head>
+    <meta name="description" content="" />
 
-<body class="skin-default fixed-header">
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
-   @yield("PreLoader")
-    <div id="main-wrapper">
-        @yield("header")
-        @yield("SideBar")
-        <div class="page-wrapper">
-            <div class="container-fluid">
+    @yield("assets.css")
+    @yield("page.css")
+    <!-- Page CSS -->
 
-                <div class="row page-titles">
-                    <div class="col-md-5 align-self-center">
-                        <h4 class="text-themecolor">@yield('title')</h4>
-                    </div>
-                    @isset($name)
-                    <div class="col-md-7 align-self-center text-end">
-                        <div class="d-flex justify-content-end align-items-center">
-                            <a href="{{ route("$name.create") }}" class="btn btn-info d-none d-lg-block m-l-15 text-white"><i
-                                class="fa fa-plus-circle"></i> Create New</a>
-                            </div>
-                        </div>
-                    @endisset
-                </div>
+    <!-- Helpers -->
+    @yield("helpers")
+  </head>
 
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+      <div class="layout-container">
+        <!-- Navbar -->
 
+        @include("component.Navbar")
 
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                @yield("content")
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
+        <!-- / Navbar -->
 
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Menu -->
+            @include("component.Menu")
+            <!-- / Menu -->
 
-
-                @yield("ServicePanel")
+            <!-- Content -->
+            <div class="container-fluid flex-grow-1 container-p-y">
+            @yield("content")
             </div>
-        </div>
-        @yield("footer")
-    </div>
-    @yield('assets/js')
-    @yield("content.js")
-</body>
+            <!--/ Content -->
 
+            <!-- Footer -->
+            @include("component.Footer")
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!--/ Content wrapper -->
+        </div>
+
+        <!--/ Layout container -->
+      </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+
+    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+    <div class="drag-target"></div>
+
+    <!--/ Layout wrapper -->
+
+    <!-- Core JS -->
+    @yield("assets.js")
+    @yield("page.js")
+
+  </body>
 </html>

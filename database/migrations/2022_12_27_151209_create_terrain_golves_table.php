@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('lengh');
             $table->unsignedInteger('NumHoles');
             $table->unsignedInteger('par');
-            $table->text('phone1')->nullable();
-            $table->text('phone2')->nullable();
-            $table->text('phone3')->nullable();
+            $table->string('phone1')->nullable();
+            $table->string('phone2')->nullable();
+            $table->string('phone3')->nullable();
             $table->text('description');
             $table->foreignId('ville_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

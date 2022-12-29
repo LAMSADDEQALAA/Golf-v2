@@ -1,82 +1,284 @@
 @extends("layout.app")
-@include("FormAssets")
+
 @section('title','Terrain De Golf Add Form')
 
 
 @section("content")
-    <form class="form-horizontal m-t-40">
-        <div class="form-group">
-            <label class="form-label">Nom</label>
-            <input type="text" class="form-control" placeholder="Nom...">
+<div class="col-12">
+    <div class="bs-stepper vertical wizard-modern wizard-modern-vertical-icons-example mt-2">
+    <div class="bs-stepper-header">
+        <div class="step" data-target="#Field-Image-Files-vertical-modern">
+        <button type="button" class="step-trigger">
+            <span class="bs-stepper-circle">
+            <i class="ti ti-file-description"></i>
+            </span>
+            <span class="bs-stepper-label">
+            <span class="bs-stepper-title">Field Image Files</span>
+            <span class="bs-stepper-subtitle">Setup Field Images</span>
+            </span>
+        </button>
         </div>
-        <div class="form-group">
-            <label class="form-label">Email</label>
-            <input type="text" class="form-control" placeholder="Email...">
+        <div class="line"></div>
+        <div class="step" data-target="#Field-Infos-vertical-modern">
+        <button type="button" class="step-trigger">
+            <span class="bs-stepper-circle">
+            <i class="ti ti-list"></i>
+            </span>
+            <span class="bs-stepper-label">
+            <span class="bs-stepper-title">Field Infos</span>
+            <span class="bs-stepper-subtitle">Add Field info</span>
+            </span>
+        </button>
         </div>
+        <div class="line"></div>
+        <div class="step" data-target="#Video-links-vertical-modern">
+        <button type="button" class="step-trigger">
+            <span class="bs-stepper-circle"><i class="ti ti-brand-youtube"></i> </span>
+            <span class="bs-stepper-label">
+            <span class="bs-stepper-title">Video Links</span>
+            <span class="bs-stepper-subtitle">Add Video links</span>
+            </span>
+        </button>
+        </div>
+    </div>
+    <div class="bs-stepper-content">
+        <form action="">
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label class="form-label">Phone 1</label>
-                    <input type="text" class="form-control" placeholder="Phone Number...">
+        <!-- Field-Image -->
+        <div id="Field-Image-Files-vertical-modern" class="content">
+
+                <!-- Multi  -->
+                <div class="content-header mb-3">
+                    <h5 class="card-header">Images</h5>
+                    <small>Upload Field Imgaes</small>
                 </div>
+                <div class="card mb-4">
+                    <div class="card-body">
+                      <div class="mb-3">
+                        <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+                        <input class="form-control" type="file" id="formFileMultiple" multiple />
+                      </div>
+                    </div>
+                    </div>
+
+
+                <!-- Multi  -->
+
+            <div class="col-12 d-flex justify-content-between">
+                <a href="javascript:void(0)"  class="btn btn-label-secondary btn-prev" disabled>
+                <i class="ti ti-arrow-left me-sm-1"></i>
+                <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                </a>
+                <a href="javascript:void(0)" class="btn btn-primary btn-next">
+                <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                <i class="ti ti-arrow-right"></i>
+                </a>
             </div>
-            <!--/span-->
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label class="form-label">Phone 2</label>
-                    <input type="text" class="form-control" placeholder="Phone Number...">
+
+        </div>
+
+        <!-- Field-Infos -->
+        <div id="Field-Infos-vertical-modern" class="content">
+            <div class="content-header mb-3">
+            <h6 class="mb-0">Field Details</h6>
+            <small>Enter Field Details.</small>
+            </div>
+                <div class="card mb-4">
+                    <div class="card-body">
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Nom</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="exampleFormControlInput1"
+                          name="Nom"
+                          placeholder="Nom..."
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">address</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          name="address"
+                          id="exampleFormControlInput1"
+                          placeholder="address..."
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                        <input
+                          type="email"
+                          name="email"
+                          class="form-control"
+                          id="exampleFormControlInput1"
+                          placeholder="email..."
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label for="TagifyBasic" class="form-label">Phone Numbers</label>
+                        <input id="TagifyBasic" type="number" class="form-control" name="TagifyBasic" placeholder="Phone1, Phone2, Phone3" />
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-2">
+                            <label for="exampleFormControlInput1" class="form-label">Par</label>
+                            <input
+                              type="email"
+                              name="Par"
+                              class="form-control"
+                              id="exampleFormControlInput1"
+                              placeholder="Par..."
+                            />
+                          </div>
+                          <div class="col-2">
+                            <label for="exampleFormControlInput1" class="form-label">Lengh</label>
+                            <input
+                              type="email"
+                              name="Lengh"
+                              class="form-control"
+                              id="exampleFormControlInput1"
+                              placeholder="Lengh..."
+                            />
+                          </div>
+                          <div class="col-2">
+                            <label for="exampleFormControlInput1" class="form-label">Number of Holes</label>
+                            <input
+                              type="email"
+                              name="NumHoles"
+                              class="form-control"
+                              id="exampleFormControlInput1"
+                              placeholder="Number of Holes..."
+                            />
+                          </div>
+                      </div>
+
+                      <div class="mb-3">
+                        <label class="form-label" for="collapsible-state">Villes</label>
+                        <select id="collapsible-state" class="select2 form-select" data-allow-clear="true">
+                          <option value="">Select</option>
+                          <option value="AL">Alabama</option>
+                          <option value="AK">Alaska</option>
+                          <option value="AZ">Arizona</option>
+                          <option value="AR">Arkansas</option>
+                          <option value="CA">California</option>
+                          <option value="CO">Colorado</option>
+                          <option value="CT">Connecticut</option>
+                          <option value="DE">Delaware</option>
+                          <option value="DC">District Of Columbia</option>
+                          <option value="FL">Florida</option>
+                          <option value="GA">Georgia</option>
+                          <option value="HI">Hawaii</option>
+                          <option value="ID">Idaho</option>
+                          <option value="IL">Illinois</option>
+                          <option value="IN">Indiana</option>
+                          <option value="IA">Iowa</option>
+                          <option value="KS">Kansas</option>
+                          <option value="KY">Kentucky</option>
+                          <option value="LA">Louisiana</option>
+                          <option value="ME">Maine</option>
+                          <option value="MD">Maryland</option>
+                          <option value="MA">Massachusetts</option>
+                          <option value="MI">Michigan</option>
+                          <option value="MN">Minnesota</option>
+                          <option value="MS">Mississippi</option>
+                          <option value="MO">Missouri</option>
+                          <option value="MT">Montana</option>
+                          <option value="NE">Nebraska</option>
+                          <option value="NV">Nevada</option>
+                          <option value="NH">New Hampshire</option>
+                          <option value="NJ">New Jersey</option>
+                          <option value="NM">New Mexico</option>
+                          <option value="NY">New York</option>
+                          <option value="NC">North Carolina</option>
+                          <option value="ND">North Dakota</option>
+                          <option value="OH">Ohio</option>
+                          <option value="OK">Oklahoma</option>
+                          <option value="OR">Oregon</option>
+                          <option value="PA">Pennsylvania</option>
+                          <option value="RI">Rhode Island</option>
+                          <option value="SC">South Carolina</option>
+                          <option value="SD">South Dakota</option>
+                          <option value="TN">Tennessee</option>
+                          <option value="TX">Texas</option>
+                          <option value="UT">Utah</option>
+                          <option value="VT">Vermont</option>
+                          <option value="VA">Virginia</option>
+                          <option value="WA">Washington</option>
+                          <option value="WV">West Virginia</option>
+                          <option value="WI">Wisconsin</option>
+                          <option value="WY">Wyoming</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label for="exampleFormControlTextarea1" class="form-label">Descriptions</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+            <div class="col-12 d-flex justify-content-between">
+                <a href="javascript:void(0)"  class="btn btn-label-secondary btn-prev">
+                    <i class="ti ti-arrow-left me-sm-1"></i>
+                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                    </a>
+                <a href="javascript:void(0)"  class="btn btn-primary btn-next">
+                <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                <i class="ti ti-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- Video-links -->
+
+
+        <div id="Video-links-vertical-modern" class="content">
+            <div class="content-header mb-3">
+            <h6 class="mb-0">Video Links</h6>
+            <small>Put Video Links.</small>
+            </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="mb-3">
+                    <label for="TagifyBasic" class="form-label">Links</label>
+                    <input id="TagifyBasic" cols="30" rows="20" class="form-control" name="TagifyBasic" placeholder="Tag1, Tag2, Tag3" />
+                        </div>
+                   </div>
                 </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label class="form-label">Phone 3</label>
-                    <input type="text" class="form-control" placeholder="Phone Number...">
-                </div>
-            </div>
-            <!--/span-->
-        </div>
-        <div class="form-group">
-            <label class="form-label">Address</label>
-            <input type="text" class="form-control" placeholder="Address...">
-        </div>
-        <div class="form-group">
-            <label class="form-label">Number of Holes</label>
-            <input type="text" class="form-control" placeholder="Number of Holes...">
-        </div>
-        <div class="form-group">
-            <label class="form-label">Par</label>
-            <input type="text" class="form-control" placeholder="Par...">
-        </div>
-        <div class="form-group">
-            <label class="form-label">Lengh</label>
-            <input type="text" class="form-control" placeholder="lengh...">
-        </div>
-        <div class="form-group">
-            <label class="form-label">Description</label>
-            <textarea class="form-control" rows="5"></textarea>
-        </div>
 
 
-        <div class="form-actions">
-            <div class="card-body">
-                <button type="submit" class="btn btn-success text-white">Save</button>
-                <button type="button" class="btn btn-dark">Cancel</button>
+            <div class="col-12 d-flex justify-content-between">
+                <button class="btn btn-label-secondary btn-prev">
+                <i class="ti ti-arrow-left me-sm-1"></i>
+                <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                </button>
+                <button class="btn btn-success btn-submit">Submit</button>
             </div>
         </div>
-    </form>
+        </form>
+    </div>
+    </div>
+</div>
 @endsection
 
-@section("content.css")
-  @yield("form/css")
+
+
+@section("page.css")
+<link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/libs/tagify/tagify.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.css') }}" />
 @endsection
 
-@section("content.js")
-    @yield("form/js")
+@section("page.js")
+
+<script src="{{ asset('assets/vendor/libs/tagify/tagify.js') }}"></script>
+<script src="{{ asset('assets/vendor/libs/bs-stepper/bs-stepper.js') }}"></script>
+<script src="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
+<script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
+
+
+<script src="{{ asset('assets/js/forms-tagify.js') }}"></script>
+<script src="{{ asset('assets/js/form-layouts.js') }}"></script>
+<script src="{{ asset('assets/js/form-wizard-icons.js') }}"></script>
+
 @endsection
-
-
-
-
 

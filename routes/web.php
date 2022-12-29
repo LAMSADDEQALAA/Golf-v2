@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name("login");
 
 Route::get("/editRolePerm", [RoleController::class, 'EditRolePermissions'])->name('editRolePerm');
 Route::get("/editUserRoles", [UserController::class, 'EditUserRoles'])->name('editUserRoles');
@@ -39,7 +39,6 @@ Route::resource('video', VideoController::class);
 
 Route::get("/logout", function () {
     Auth::logout();
-    return redirect("/");
 })->name('logout');
 
 Auth::routes();

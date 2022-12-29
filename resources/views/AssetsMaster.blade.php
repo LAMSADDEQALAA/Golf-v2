@@ -1,41 +1,48 @@
-@section("assets/css")
-    <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-     crossorigin="anonymous" referrerpolicy="no-referrer" />
+@section("assets.css")
+        <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet"
+        />
+
+        <!-- Icons -->
+        <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/tabler-icons.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/flag-icons.css') }}" />
+
+        <!-- Core CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core.css') }}" class="template-customizer-core-css" />
+        <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
+        <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+        <!-- Vendors CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/vendor/libs/node-waves/node-waves.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/vendor/libs/typeahead-js/typeahead.css') }}" />
 @endsection
 
-
-@section("login/css")
-  <link rel="stylesheet" href="{{ asset('assets/css/pages/login-register-lock.css') }}" />
+@section("helpers")
+    <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
+    <script src="{{ asset('assets/vendor/js/template-customizer.js') }}"></script>
+    <script src="{{ asset('assets/js/config.js') }}"></script>
 @endsection
 
+@section("assets.js")
+    <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/node-waves/node-waves.js') }}"></script>
 
-@section("assets/js")
-    <!-- build:js assets/vendor/js/core.js -->
-    {{-- <script src="{{ asset("assets/jquery/bootstrap/dist/js/bootstrap.bundle.min.js") }}" ></script>
-    <script src="{{ asset("assets/jquery/dist/jquery.min.js") }}" ></script> --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
-    integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('assets/vendor/libs/hammer/hammer.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/i18n/i18n.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
 
+    <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
 
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="{{ asset('assets/js/perfect-scrollbar.jquery.min.js') }}" ></script>
-    <!--Wave Effects -->
-    <script src="{{ asset('assets/js/waves.js') }}" ></script>
-    <!--stickey kit -->
-    <script src="{{ asset('assets/sticky-kit-master/dist/sticky-kit.min.js') }}" ></script>
-    <script src="{{ asset('assets/sparkline/jquery.sparkline.min.js') }}" ></script>
-    <!--Custom JavaScript -->
-    <script src="{{ asset('assets/js/custom.min.js') }}" ></script>
-    <script src="{{ asset('assets/jquery-sparkline/jquery.sparkline.min.js') }}" ></script>
-
-    <script>
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-    </script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <!-- endbuild -->
+    <!-- Main JS -->
 @endsection
 
