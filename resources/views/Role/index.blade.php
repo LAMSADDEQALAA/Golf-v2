@@ -1,5 +1,5 @@
 @extends("layout.app")
-@section('title','Terrain De Golf DataTable')
+@section('title','Roles')
 
 
 @section("content")

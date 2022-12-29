@@ -1,6 +1,6 @@
 @extends("layout.app")
 
-@section('title','Terrain De Golf Add Form')
+@section('title','Terrain Add Form')
 
 
 @section("content")

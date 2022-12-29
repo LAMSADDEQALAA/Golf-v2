@@ -1,5 +1,5 @@
 @extends("layout.app")
-@section('title','DashBoard')
+@section('title','Account Settings')
 
 
 

@@ -1,7 +1,7 @@
 @include("AssetsMaster")
 <!DOCTYPE html>
 <html
-  lang="en"
+  lang="{{ str_replace('_', '-', app()->getLocale()) }}"
   class="light-style layout-menu-fixed"
   dir="ltr"
   data-theme="theme-default"
@@ -9,13 +9,14 @@
   data-template="horizontal-menu-template"
 >
   <head>
-    <meta charset="utf-8" />
+      <meta charset="utf-8" />
+      <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Fluid - Layouts | Vuexy - Bootstrap Admin Template</title>
+    <title>Golf - @yield("title")</title>
 
     <meta name="description" content="" />
 
