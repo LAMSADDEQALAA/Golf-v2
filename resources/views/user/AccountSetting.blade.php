@@ -5,7 +5,7 @@
 
 @section("content")
  <div class="card mb-4">
-    <h5 class="card-header">Change Password</h5>
+    <h5 class="card-header">Account Settings</h5>
     <div class="card-body">
       <form id="formAccountSettings" method="POST" onsubmit="return false">
         <div class="row">
@@ -18,7 +18,7 @@
                 name="email"
                 id="email"
                 placeholder="Email@example.js..."
-                value="Email@example.js"
+                value="{{ Auth::user()->email }}"
                 readonly
               />
             </div>

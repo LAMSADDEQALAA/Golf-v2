@@ -233,7 +233,10 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="Links" class="form-label">Links</label>
+                            <div class="input-group">
+                            <span class="input-group-text" id="basic-addon14">https://example.com/users/</span>
                             <input id="Links" type="text" class="form-control" name="videolinks" placeholder="Link1, Link2, Link3" />
+                            </div>
                           </div>
                    </div>
                 </div>

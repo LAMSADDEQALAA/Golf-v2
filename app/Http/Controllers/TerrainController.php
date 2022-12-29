@@ -48,7 +48,7 @@ class TerrainController extends Controller
 
 
 
-         $data = array_values(json_decode($tab["Phones"], true));
+        $data = array_values(json_decode($tab["Phones"], true));
 
         dd($data[0]["value"]);
     }

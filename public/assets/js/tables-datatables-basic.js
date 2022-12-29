@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         const formAddNewRecord = document.getElementById("form-add-new-record");
 
         setTimeout(() => {
-            const newRecord = document.querySelector(".create-new"),
+            const EditTerrain = document.querySelector(".Edit-Terrain"),
                 offCanvasElement = document.querySelector("#add-new-record");
             const Newterrain = document.querySelector(".create-Terrain");
 
@@ -22,8 +22,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
             }
 
             // To open offCanvas, to add new record
-            if (newRecord) {
-                newRecord.addEventListener("click", function () {
+            if (EditTerrain) {
+                EditTerrain.addEventListener("click", function () {
                     offCanvasEl = new bootstrap.Offcanvas(offCanvasElement);
                     offCanvasEl.show();
                 });

@@ -25,6 +25,8 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name("login");
 
+Route::get("/terrain/show", fn () => view("Terrain.show"));
+
 Route::get("role/UpdateRolePerm", [RoleController::class, 'UpdateRolePermissions'])->name('role.UpdateRolePerm');
 Route::get("user/UpdateUserRoles", [UserController::class, 'UpdateUserRoles'])->name('user.UpdateUserRoles');
 Route::get("user/AccountSettings", [UserController::class, "AccountSettings"])->name('user.AccountSettings');

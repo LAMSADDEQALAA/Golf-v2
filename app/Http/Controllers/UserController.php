@@ -43,6 +43,10 @@ class UserController extends Controller
     public function UpdateUserRoles()
     {
     }
+    public function AccountSettings()
+    {
+        return view("user.AccountSetting");
+    }
     /**
      * Remove the specified resource from storage.
      *
