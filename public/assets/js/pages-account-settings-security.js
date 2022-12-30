@@ -63,8 +63,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
                         rowSelector: ".col-md-6",
                     }),
                     submitButton: new FormValidation.plugins.SubmitButton(),
-                    // Submit the form when all fields are valid
-                    // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+
+                    defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
                     autoFocus: new FormValidation.plugins.AutoFocus(),
                 },
                 init: (instance) => {

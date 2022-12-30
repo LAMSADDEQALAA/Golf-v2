@@ -142,6 +142,6 @@ class RoleController extends Controller
         }
         Session::flash('message', 'Role Deleted SuccessFuly');
         Session::flash('message_type', 'success');
-        return redirect("/role");
+        return redirect()->back();
     }
 }

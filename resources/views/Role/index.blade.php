@@ -147,8 +147,8 @@
               </button>
               <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
-          </div>
         </form>
+          </div>
         </div>
     </div>
     <!-- Create modal -->

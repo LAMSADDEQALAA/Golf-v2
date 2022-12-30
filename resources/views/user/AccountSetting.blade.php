@@ -7,7 +7,9 @@
  <div class="card mb-4">
     <h5 class="card-header">Account Settings</h5>
     <div class="card-body">
-      <form id="formAccountSettings" method="POST" onsubmit="return false">
+      <form id="formAccountSettings" method="POST" action="{{ route('user:updatepassword') }}">
+        @method('PUT')
+        @csrf
         <div class="row">
           <div class="mb-3 col-md-6 form-password-toggle">
             <label class="form-label" for="email">Email</label>

@@ -16,84 +16,42 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ( $users as $user )
                     <tr>
-                        <td>#</td>
-                        <td>Email</td>
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->email }}</td>
                         <td>
-                            <span class="badge bg-label-primary me-1">role</span>
-                            <span class="badge bg-label-primary me-1">role</span>
-                            <span class="badge bg-label-primary me-1">role</span>
+                            @foreach ( $user->roles as $role )
+                            <span class="badge bg-label-primary me-1">{{ $role->name }}</span>
+                            @endforeach
+
                         </td>
                         <td>
                     <div class="d-inline-block">
                         <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end m-0">
                         <li><a href="javascript:;"
+                            data-url="{{ route('user.EditUserRoles',["user"=>$user->id]) }}"
                             class="dropdown-item"
                             data-bs-toggle="modal"
+                            id="Edit-user-roles"
                             data-bs-target="#Edit-Role-modal"
                             >Edit Roles</a></li>
                         <div class="dropdown-divider"></div>
-                        <li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li>
+                        <li>
+                            <form action="{{ route("user.destroy",["user"=> $user->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="dropdown-item text-danger delete-record">Delete</button>
+                            </form>
+                        </li>
                         </ul>
                         </div>
-                        <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil" data-bs-toggle="modal"
+                        <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i id="Edit-user" class="text-primary ti ti-pencil" data-url="{{ route('user.edit',["user"=>$user->id]) }}" data-bs-toggle="modal"
                             data-bs-target="#Edit-modal"></i></a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>#</td>
-                        <td>Email</td>
-                        <td>
-                            <span class="badge bg-label-primary me-1">role</span>
-                            <span class="badge bg-label-primary me-1">role</span>
-                        </td>
-                        <td>
-                    <div class="d-inline-block">
-                        <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end m-0">
-                        <li><a href="javascript:;" class="dropdown-item">Edit Roles</a></li>
-                        <div class="dropdown-divider"></div>
-                        <li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li>
-                        </ul>
-                        </div>
-                        <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#</td>
-                        <td>Email</td>
-                        <td>
-                            <span class="badge bg-label-primary me-1">role</span>
-                        </td>
-                        <td>
-                    <div class="d-inline-block">
-                        <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end m-0">
-                        <li><a href="javascript:;" class="dropdown-item">Edit Roles</a></li>
-                        <div class="dropdown-divider"></div>
-                        <li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li>
-                        </ul>
-                        </div>
-                        <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#</td>
-                        <td>Email</td>
-                        <td></td>
-                        <td>
-                    <div class="d-inline-block">
-                        <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end m-0">
-                        <li><a href="javascript:;" class="dropdown-item">Edit Roles</a></li>
-                        <div class="dropdown-divider"></div>
-                        <li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li>
-                        </ul>
-                        </div>
-                        <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil"></i></a>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
         </table>
     </div>
@@ -111,14 +69,17 @@
                 aria-label="Close"
               ></button>
             </div>
+            <form action="{{ route('user.UpdateUserRoles') }}" method="POST">
+                @csrf
             <div class="modal-body">
               <div class="row">
                 <div class="col mb-3">
-                    <label for="exampleFormControlReadOnlyInput1" class="form-label">user Email</label>
+                    <label for="user-edit-role" class="form-label">user Email</label>
+                    <input type="hidden" name="id" id="id-edit-user-role">
                     <input
                       class="form-control"
                       type="text"
-                      id="exampleFormControlReadOnlyInput1"
+                      id="user-edit-role"
                       placeholder="Readonly input here..."
                       readonly
                     />
@@ -126,13 +87,12 @@
               </div>
               <div class="row g-2">
                 <div class="col-12 mb-4">
-                    <label for="select2PrimaryEdit" class="form-label">Roles</label>
+                    <label for="role-edit-role" class="form-label">Roles</label>
                     <div class="select2-primary">
-                      <select id="select2PrimaryEdit" class="select2 form-select" multiple>
-                        <option value="1" selected>Option1</option>
-                        <option value="2" selected>Option2</option>
-                        <option value="3">Option3</option>
-                        <option value="4">Option4</option>
+                      <select id="role-edit-role" name="roles[]" class="select2 form-select" multiple>
+                        @foreach ( $roles as $role )
+                        <option value="{{ $role->name }}" >{{ $role->name }}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -142,8 +102,9 @@
               <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                 Close
               </button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
+        </form>
           </div>
         </div>
     </div>
@@ -153,7 +114,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalCenterTitle">Role edit form</h5>
+                <h5 class="modal-title" id="modalCenterTitle">User edit form</h5>
                 <button
                 type="button"
                 class="btn-close"
@@ -161,17 +122,21 @@
                 aria-label="Close"
                 ></button>
             </div>
+            <form id="edit-role" action="{{ route("user:update") }}" method="POST">
+                @method('PUT')
+                @csrf
             <div class="modal-body">
                 <div class="row">
                 <div class="col mb-3">
-                    <label for="exampleFormControlReadOnlyInput1" class="form-label">Role</label>
+                    <label for="exampleFormControlReadOnlyInput1" class="form-label">Email</label>
+                    <input type="hidden" name="id" id="id-User-edit">
                     <input
                         class="form-control"
                         type="text"
-                        name="role"
-                        id="exampleFormControlReadOnlyInput1"
+                        name="email"
+                        id="e_email"
                         placeholder="Enter Role name..."
-                        value="Role"
+                        value=""
                     />
                 </div>
                 </div>
@@ -182,9 +147,9 @@
                         class="form-control"
                         type="text"
                         name="NewPassword"
-                        id="exampleFormControlReadOnlyInput1"
+                        id="NewPassword"
                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                        value="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                        value=""
                     />
                 </div>
                 </div>
@@ -193,8 +158,9 @@
                 <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                 Close
                 </button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
+        </form>
             </div>
         </div>
     </div>
@@ -230,10 +196,9 @@
                     <label for="select2PrimaryAdd" class="form-label">Roles</label>
                     <div class="select2-primary">
                       <select id="select2PrimaryAdd" class="select2 form-select" multiple>
-                        <option value="1">Option1</option>
-                        <option value="2">Option2</option>
-                        <option value="3">Option3</option>
-                        <option value="4">Option4</option>
+                        @foreach ( $roles as $role )
+                        <option value="{{ $role->name }}" >{{ $role->name }}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -293,4 +258,41 @@
     <script src="{{ asset('assets/js/tables-datatables-basic.js') }}"></script>
     <script src="{{ asset('assets/js/forms-selects.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/ui-modals.js') }}"></script> --}}
+
+    <script>
+
+
+$(document).on("click","#Edit-user-roles",async (e) => EditModalSetGetValues(e,"#user-edit-role","#id-edit-user-role"));
+$(document).on("click","#Edit-user",async (e)=>EditModalSetGetValues(e,"#e_email","#id-User-edit"));
+
+    async function EditModalSetGetValues(e,InputTarget,id){
+            let url= $(e.target).data("url");
+            try {
+            let response = await fetch(url,{
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                method: 'GET',
+            });
+            let data = await response.json();
+
+            if(data?.roles){
+
+                const roles = data.roles.map(role => {
+                    return role.name
+                })
+
+
+                $('#role-edit-role').val(roles);
+            }
+            $(InputTarget).val(data.email);
+            $(id).val(data.id)
+
+            console.log($(id).val(),$(InputTarget).val());
+            } catch (error) {
+                console.log(error);
+            }
+    }
+
+    </script>
 @endsection

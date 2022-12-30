@@ -30,10 +30,13 @@ Route::get('/login', function () {
 
 
 Route::post("role/UpdateRolePerm", [RoleController::class, 'UpdateRolePermissions'])->name('role.UpdateRolePerm');
-Route::get("role/{role}/EditRolePerm", [RoleController::class, 'EditRolePermissions'])->name('role.EditRolePerm');
 Route::put("/role/update", [RoleController::class, "update"])->name("role:update");
+Route::get("role/{role}/EditRolePerm", [RoleController::class, 'EditRolePermissions'])->name('role.EditRolePerm');
 
 
+Route::put("/user/update", [UserController::class, "update"])->name("user:update");
+Route::put("/user/updatepassword", [UserController::class, "UpdatePassword"])->name("user:updatepassword");
+Route::get("user/{user}/EditUserRoles", [UserController::class, 'EditUserRoles'])->name('user.EditUserRoles');
 Route::post("/user/UpdateUserRoles", [UserController::class, 'UpdateUserRoles'])->name('user.UpdateUserRoles');
 Route::get("/user/AccountSettings", [UserController::class, "AccountSettings"])->name('user.AccountSettings');
 // Route::get("terrain/store", [TerrainController::class, "store"]);

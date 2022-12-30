@@ -62,6 +62,16 @@
                     {{ Session::get("message") }}
                    </div>
                 @endif
+                @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                        <div class="alert alert-warning d-flex align-items-center" role="alert">
+                            <span class="alert-icon text-warning me-2">
+                                <i class="ti ti-bell ti-xs"></i>
+                            </span>
+                                {{ $error }}
+                             </div>
+                        @endforeach
+                @endif
             @yield("content")
             </div>
             <!--/ Content -->
