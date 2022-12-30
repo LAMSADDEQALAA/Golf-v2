@@ -63,14 +63,6 @@
                         </td>
                     </tr>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>Nom De Ville</th>
-                        <th>Numero des Terrain Golf</th>
-                        <th>Actions</th>
-                    </tr>
-                </tfoot>
         </table>
     </div>
     </div>

@@ -21,7 +21,11 @@
                         <td class="id">1</td>
                         <td class="Role">hello</td>
                         <td class="Permissions">
-                            perm1,perm2
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+
                         </td>
                         <td>
                     <div class="d-inline-block">
@@ -43,7 +47,13 @@
                     <tr>
                         <td>#</td>
                         <td>Role</td>
-                        <td>Permissions</td>
+                        <td>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                        </td>
                         <td>
                     <div class="d-inline-block">
                         <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
@@ -59,7 +69,21 @@
                     <tr>
                         <td>#</td>
                         <td>Role</td>
-                        <td>Permissions</td>
+                        <td>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+                            <span class="badge bg-label-primary me-1">Perm</span>
+
+                        </td>
                         <td>
                     <div class="d-inline-block">
                         <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
@@ -75,7 +99,7 @@
                     <tr>
                         <td>#</td>
                         <td>Role</td>
-                        <td>Permissions</td>
+                        <td></td>
                         <td>
                     <div class="d-inline-block">
                         <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
@@ -89,14 +113,6 @@
                         </td>
                     </tr>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>Role</th>
-                        <th>Permissions</th>
-                        <th>Actions</th>
-                    </tr>
-                </tfoot>
         </table>
     </div>
     </div>
@@ -136,9 +152,9 @@
                         <option value="HI">Hawaii</option>
                       </optgroup>
                       <optgroup label="Pacific Time Zone">
-                        <option value="CA">California</option>
+                        <option value="CA" >California</option>
                         <option value="NV">Nevada</option>
-                        <option value="OR">Oregon</option>
+                        <option value="OR" >Oregon</option>
                         <option value="WA">Washington</option>
                       </optgroup>
                       <optgroup label="Mountain Time Zone">
@@ -146,9 +162,9 @@
                         <option value="CO" >Colorado</option>
                         <option value="ID">Idaho</option>
                         <option value="MT">Montana</option>
-                        <option value="NE">Nebraska</option>
+                        <option value="NE" >Nebraska</option>
                         <option value="NM">New Mexico</option>
-                        <option value="ND">North Dakota</option>
+                        <option value="ND" >North Dakota</option>
                         <option value="UT">Utah</option>
                         <option value="WY">Wyoming</option>
                       </optgroup>
@@ -396,9 +412,9 @@
 
         $("#id-edit-perm").val(Target.find(".id").text());
         $("#role-edit-perm").val(Target.find(".Role").text());
-        $("#Permission-edit-perm").prop(["Ohio", "Vermont", "Virginia"]);
+        $("#Permission-edit-perm").val(['CA', 'OR', 'NE', 'ND']);
 
-
+        console.log($(".perm").text());
 
 
     });

@@ -112,20 +112,6 @@
                         </td>
                     </tr>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>Nom</th>
-                        <th>Email</th>
-                        <th>Address</th>
-                        <th>Number of holes</th>
-                        <th>Par</th>
-                        <th>lengh</th>
-                        <th>Phones</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                    </tr>
-                </tfoot>
         </table>
     </div>
 </div>

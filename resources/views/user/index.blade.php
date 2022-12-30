@@ -20,7 +20,11 @@
                     <tr>
                         <td>#</td>
                         <td>Email</td>
-                        <td>Roles</td>
+                        <td>
+                            <span class="badge bg-label-primary me-1">role</span>
+                            <span class="badge bg-label-primary me-1">role</span>
+                            <span class="badge bg-label-primary me-1">role</span>
+                        </td>
                         <td>
                     <div class="d-inline-block">
                         <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
@@ -41,7 +45,10 @@
                     <tr>
                         <td>#</td>
                         <td>Email</td>
-                        <td>Roles</td>
+                        <td>
+                            <span class="badge bg-label-primary me-1">role</span>
+                            <span class="badge bg-label-primary me-1">role</span>
+                        </td>
                         <td>
                     <div class="d-inline-block">
                         <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
@@ -57,7 +64,9 @@
                     <tr>
                         <td>#</td>
                         <td>Email</td>
-                        <td>Roles</td>
+                        <td>
+                            <span class="badge bg-label-primary me-1">role</span>
+                        </td>
                         <td>
                     <div class="d-inline-block">
                         <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
@@ -73,7 +82,7 @@
                     <tr>
                         <td>#</td>
                         <td>Email</td>
-                        <td>Roles</td>
+                        <td></td>
                         <td>
                     <div class="d-inline-block">
                         <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
@@ -87,14 +96,6 @@
                         </td>
                     </tr>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>Email</th>
-                        <th>Roles</th>
-                        <th>Actions</th>
-                    </tr>
-                </tfoot>
         </table>
     </div>
     </div>
