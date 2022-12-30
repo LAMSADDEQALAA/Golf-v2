@@ -81,10 +81,29 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'role' => 'required',
+        ]);
+
+        $data = [
+            'name' => $request->role,
+        ];
+
+        if (!Role::where('id', $request->id)
+            ->update($data)) {
+            Session::flash('message', 'Error occured while updating Role');
+            Session::flash('message_type', 'danger');
+            return redirect()
+                ->back();
+        }
+
+        Session::flash('message', 'Role Was updated SuccessFuly');
+        Session::flash('message_type', 'success');
+        return redirect("/role");
     }
+
 
     public function EditRolePermissions(Role $role)
     {
@@ -93,8 +112,18 @@ class RoleController extends Controller
         return response()->json($role);
     }
 
-    public function UpdateRolePermissions()
+    public function UpdateRolePermissions(Request $req)
     {
+        $role = Role::find($req->id);
+        if (!$role->syncPermissions($req->perms)) {
+            Session::flash('message', 'Error occured While Updating role Permissions');
+            Session::flash('message_type', 'danger');
+            return redirect()
+                ->back();
+        }
+        Session::flash('message', 'role Permissions were Updated');
+        Session::flash('message_type', 'success');
+        return redirect("/role");
     }
 
     /**

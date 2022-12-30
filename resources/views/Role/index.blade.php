@@ -68,6 +68,8 @@
                 aria-label="Close"
               ></button>
             </div>
+            <form action="{{ route('role.UpdateRolePerm') }}" method="POST">
+                @csrf
             <div class="modal-body">
               <div class="row">
                 <div class="col mb-3">
@@ -77,7 +79,7 @@
                       class="form-control"
                       type="text"
                       id="role-edit-perm"
-                      placeholder="Readonly input here..."
+                      placeholder="Readonly input"
                       readonly
                     />
                 </div>
@@ -85,7 +87,7 @@
               <div class="row g-2">
                 <div class="col-12 mb-4">
                     <label for="Permission-edit-perm" class="form-label">Permissions</label>
-                    <select id="Permission-edit-perm" class="select2 form-select" multiple>
+                    <select id="Permission-edit-perm" name="perms[]" class="select2 form-select" multiple>
                         @foreach ( $perms as $key => $perm )
                         <optgroup label="{{ $key  }}">
                          @foreach ( $perm as $value )
@@ -101,8 +103,9 @@
               <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                 Close
               </button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
+        </form>
           </div>
         </div>
     </div>
@@ -119,14 +122,18 @@
                 aria-label="Close"
               ></button>
             </div>
+        <form id="edit-role" action="{{ route("role:update") }}" method="POST">
+            @method('PUT')
+            @csrf
             <div class="modal-body">
               <div class="row">
                 <div class="col mb-3">
+                    <input type="hidden" name="id" id="e-id">
                     <label for="e_Role" class="form-label">Role</label>
                     <input
                       class="form-control"
                       type="text"
-                      name="e_Role"
+                      name="role"
                       id="e_Role"
                       placeholder="Enter Role name..."
                       value=""
@@ -138,9 +145,10 @@
               <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                 Close
               </button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
           </div>
+        </form>
         </div>
     </div>
     <!-- Create modal -->
@@ -241,11 +249,11 @@
     <script>
 
     $(document).on("click","#Edit-perm",async (e) => {
-         EditModalSetGetValues(e,"#role-edit-perm");
+         EditModalSetGetValues(e,"#role-edit-perm","#id-edit-perm");
     });
-    $(document).on("click","#Edit-role",async (e)=>EditModalSetGetValues(e,"#e_Role"));
+    $(document).on("click","#Edit-role",async (e)=>EditModalSetGetValues(e,"#e_Role","#e-id"));
 
-    async function EditModalSetGetValues(e,InputTarget){
+    async function EditModalSetGetValues(e,InputTarget,id){
             let url= $(e.target).data("url");
             try {
             let response = await fetch(url,{
@@ -264,6 +272,7 @@
             }
 
             $(InputTarget).val(data.name);
+            $(id).val(data.id)
             } catch (error) {
                 console.log(error);
             }
