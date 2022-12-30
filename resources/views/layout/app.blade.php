@@ -48,6 +48,20 @@
 
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
+                <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">DataTables /</span> Basic</h4>
+
+                @if(Session::has("message"))
+                  <div class="alert alert-{{ Session::get("message_type") }} d-flex align-items-center" role="alert">
+                    <span class="alert-icon text-{{ Session::get("message_type") }} me-2">
+                        @if(Session::get("message_type") == "success")
+                        <i class="ti ti-check ti-xs"></i>
+                        @else
+                        <i class="ti ti-ban ti-xs"></i>
+                        @endif
+                    </span>
+                    {{ Session::get("message") }}
+                   </div>
+                @endif
             @yield("content")
             </div>
             <!--/ Content -->

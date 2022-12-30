@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create(
+        User::updateOrCreate(
             [
                 "name" => "admin",
                 "email" => "admin@gmail.com",
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10),
             ]
         )->assignRole("Super-Admin");
-        User::create(
+        User::updateOrCreate(
             [
                 "name" => "alaa",
                 "email" => "alaa@gmail.com",

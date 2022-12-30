@@ -5,9 +5,7 @@
 "use strict";
 
 $(function () {
-    const selectPicker = $(".selectpicker"),
-        select2 = $(".select2"),
-        select2Icons = $(".select2-icons");
+    let select2 = $(".select2");
 
     // Bootstrap Select
     // --------------------------------------------------------------------

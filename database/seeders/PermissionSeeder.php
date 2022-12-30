@@ -16,26 +16,26 @@ class PermissionSeeder extends Seeder
     public function run()
     {
         //user perms
-        Permission::create(['name' => 'view-users']);
-        Permission::create(['name' => 'edit-users']);
-        Permission::create(['name' => 'add-users']);
-        Permission::create(['name' => 'delete-users']);
-        Permission::create(['name' => 'assign-user-roles']);
+        Permission::updateOrCreate(['name' => 'view-users']);
+        Permission::updateOrCreate(['name' => 'edit-users']);
+        Permission::updateOrCreate(['name' => 'add-users']);
+        Permission::updateOrCreate(['name' => 'delete-users']);
+        Permission::updateOrCreate(['name' => 'assign-user-roles']);
         //ville perms
-        Permission::create(['name' => 'view-Ville']);
-        Permission::create(['name' => 'edit-Ville']);
-        Permission::create(['name' => 'add-Ville']);
-        Permission::create(['name' => 'delete-Ville']);
+        Permission::updateOrCreate(['name' => 'view-Ville']);
+        Permission::updateOrCreate(['name' => 'edit-Ville']);
+        Permission::updateOrCreate(['name' => 'add-Ville']);
+        Permission::updateOrCreate(['name' => 'delete-Ville']);
         //terrain perms
-        Permission::create(['name' => 'view-terrain']);
-        Permission::create(['name' => 'edit-terrain']);
-        Permission::create(['name' => 'add-terrain']);
-        Permission::create(['name' => 'delete-terrain']);
+        Permission::updateOrCreate(['name' => 'view-terrain']);
+        Permission::updateOrCreate(['name' => 'edit-terrain']);
+        Permission::updateOrCreate(['name' => 'add-terrain']);
+        Permission::updateOrCreate(['name' => 'delete-terrain']);
         //role perms
-        Permission::create(['name' => 'edit-role']);
-        Permission::create(['name' => 'add-roles']);
-        Permission::create(['name' => 'delete-role']);
-        Permission::create(['name' => 'Update-role-permissions']);
-        Permission::create(['name' => 'view-role']);
+        Permission::updateOrCreate(['name' => 'edit-role']);
+        Permission::updateOrCreate(['name' => 'add-roles']);
+        Permission::updateOrCreate(['name' => 'delete-role']);
+        Permission::updateOrCreate(['name' => 'Update-role-permissions']);
+        Permission::updateOrCreate(['name' => 'view-role']);
     }
 }

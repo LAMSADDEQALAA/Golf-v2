@@ -7,8 +7,11 @@ use App\Http\Controllers\TerrainController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\VilleController;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,10 +28,12 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name("login");
 
-Route::get("/terrain/show", fn () => view("Terrain.show"));
 
-Route::get("role/UpdateRolePerm", [RoleController::class, 'UpdateRolePermissions'])->name('role.UpdateRolePerm');
-Route::get("user/UpdateUserRoles", [UserController::class, 'UpdateUserRoles'])->name('user.UpdateUserRoles');
+Route::post("role/UpdateRolePerm", [RoleController::class, 'UpdateRolePermissions'])->name('role.UpdateRolePerm');
+Route::get("role/{role}/EditRolePerm", [RoleController::class, 'EditRolePermissions'])->name('role.EditRolePerm');
+
+
+Route::post("user/UpdateUserRoles", [UserController::class, 'UpdateUserRoles'])->name('user.UpdateUserRoles');
 Route::get("user/AccountSettings", [UserController::class, "AccountSettings"])->name('user.AccountSettings');
 // Route::get("terrain/store", [TerrainController::class, "store"]);
 
