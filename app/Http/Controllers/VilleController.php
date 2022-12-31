@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ville;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class VilleController extends Controller
 {
@@ -18,7 +19,8 @@ class VilleController extends Controller
      */
     public function index()
     {
-        return view("ville.index");
+        $villes = Ville::withCount('Terrains')->get();
+        return view("ville.index", compact("villes"));
     }
     /**
      * Store a newly created resource in storage.
@@ -28,7 +30,29 @@ class VilleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'ville' => 'required',
+        ]);
+
+        $data = [
+            'nom' => $request->ville,
+        ];
+
+        if (!Ville::create($data)) {
+            Session::flash('message', 'Error occured while Storing Ville');
+            Session::flash('message_type', 'danger');
+            return redirect()
+                ->back();
+        }
+
+        Session::flash('message', 'Ville Was stored SuccessFuly');
+        Session::flash('message_type', 'success');
+        return redirect()->back();
+    }
+
+    public function edit(Ville $Ville)
+    {
+        return response()->json($Ville);
     }
 
     /**
@@ -38,9 +62,27 @@ class VilleController extends Controller
      * @param  \App\Models\Ville  $ville
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ville $ville)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'ville' => 'required',
+        ]);
+
+        $data = [
+            'nom' => $request->ville,
+        ];
+
+        if (!Ville::where('id', $request->id)
+            ->update($data)) {
+            Session::flash('message', 'Error occured while updating Ville');
+            Session::flash('message_type', 'danger');
+            return redirect()
+                ->back();
+        }
+
+        Session::flash('message', 'Ville Was updated SuccessFuly');
+        Session::flash('message_type', 'success');
+        return redirect()->back();
     }
 
     /**
@@ -51,6 +93,14 @@ class VilleController extends Controller
      */
     public function destroy(Ville $ville)
     {
-        //
+        if (!Ville::find($ville->id)->delete()) {
+            Session::flash('message', 'Error occured while Deleting Ville');
+            Session::flash('message_type', 'danger');
+            return redirect()
+                ->back();
+        }
+        Session::flash('message', 'Ville Deleted SuccessFuly');
+        Session::flash('message_type', 'success');
+        return redirect()->back();
     }
 }

@@ -16,51 +16,24 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($villes as $ville )
                     <tr>
-                        <td>#</td>
-                        <td>Nom De Ville</td>
-                        <td>Numero des Terrain Golf</td>
+                        <td>{{ $ville->id }}</td>
+                        <td>{{ $ville->nom }}</td>
+                        <td>{{ $ville->terrains_count }}</td>
                         <td>
-                        <div class="d-inline-block">
-                            <a href="javascript:;" class="btn btn-sm btn-icon delete-record"><i class="text-primary ti ti-trash"></i></a>
-                            <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil"  data-bs-toggle="modal" data-bs-target="#modalCenter"></i></a>
+                        <div class="d-flex">
+                            <form action="{{ route("ville.destroy",["ville"=> $ville->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-sm btn-icon delete-record"><i class="text-primary ti ti-trash"></i></button>
+                            </form>
+                            <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i id="Edit-ville" class="text-primary ti ti-pencil" data-url="{{ route('ville.edit',["ville"=> $ville->id]) }}"  data-bs-toggle="modal" data-bs-target="#modalCenter"></i></a>
                         </div>
                         </td>
 
                     </tr>
-                    <tr>
-                        <td>#</td>
-                        <td>Nom De Ville</td>
-                        <td>Numero des Terrain Golf</td>
-                        <td>
-                            <div class="d-inline-block">
-                                <a href="javascript:;" class="btn btn-sm btn-icon delete-record"><i class="text-primary ti ti-trash"></i></a>
-                                <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#</td>
-                        <td>Nom De Ville</td>
-                        <td>Numero des Terrain Golf</td>
-                        <td>
-                            <div class="d-inline-block">
-                                <a href="javascript:;" class="btn btn-sm btn-icon delete-record"><i class="text-primary ti ti-trash"></i></a>
-                                <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#</td>
-                        <td>Nom De Ville</td>
-                        <td>Numero des Terrain Golf</td>
-                        <td>
-                            <div class="d-inline-block">
-                                <a href="javascript:;" class="btn btn-sm btn-icon delete-record"><i class="text-primary ti ti-trash"></i></a>
-                                <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil"></i></a>
-                            </div>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
         </table>
     </div>
@@ -78,6 +51,10 @@
                 aria-label="Close"
               ></button>
             </div>
+            <form id="edit-role" action="{{ route("ville:update") }}" method="POST">
+                @method('PUT')
+                @csrf
+                <input type="hidden" name="id" id="id-ville">
             <div class="modal-body">
               <div class="row">
                 <div class="col mb-3">
@@ -86,7 +63,7 @@
                       class="form-control"
                       type="text"
                       name="ville"
-                      id="exampleFormControlReadOnlyInput1"
+                      id="e_ville"
                       placeholder="City..."
                       value="City"
                     />
@@ -97,8 +74,9 @@
               <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                 Close
               </button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
+        </form>
           </div>
         </div>
     </div>
@@ -116,6 +94,8 @@
                 aria-label="Close"
               ></button>
             </div>
+            <form action="{{ route('ville.store') }}" method="post">
+            @csrf
             <div class="modal-body">
               <div class="row">
                 <div class="col mb-3">
@@ -134,8 +114,9 @@
               <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                 Close
               </button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
+           </form>
           </div>
         </div>
     </div>
@@ -179,4 +160,26 @@
     <script src="{{ asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js') }}"></script>
 
     <script src="{{ asset('assets/js/tables-datatables-basic.js') }}"></script>
+
+    <script>
+        $(document).on("click","#Edit-ville",async (e)=>EditModalSetGetValues(e,"#e_ville","#id-ville"));
+
+        async function EditModalSetGetValues(e,InputTarget,id){
+        let url= $(e.target).data("url");
+        try {
+        let response = await fetch(url,{
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            method: 'GET',
+        });
+        let data = await response.json();
+
+        $(InputTarget).val(data.nom);
+        $(id).val(data.id)
+        } catch (error) {
+            console.log(error);
+        }
+}
+    </script>
 @endsection

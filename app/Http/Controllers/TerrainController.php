@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Terrain;
+use App\Models\Ville;
 use Illuminate\Http\Request;
 use \Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Session;
 
 use function PHPSTORM_META\map;
 
@@ -21,7 +23,10 @@ class TerrainController extends Controller
      */
     public function index()
     {
-        return view("Terrain.index");
+
+        $terrains = Terrain::with("ville")->get();
+        $villes = Ville::all();
+        return view("Terrain.index", ["terrains" => $terrains, "villes" => $villes]);
     }
 
     /**
@@ -42,15 +47,6 @@ class TerrainController extends Controller
      */
     public function store(Request $request)
     {
-        $tab = collect($request->only("Phones"));
-
-        // dd($phones);
-
-
-
-        $data = array_values(json_decode($tab["Phones"], true));
-
-        dd($data[0]["value"]);
     }
 
     /**
@@ -61,6 +57,8 @@ class TerrainController extends Controller
      */
     public function show(Terrain $terrain)
     {
+
+        return view("Terrain.show", compact("terrain"));
     }
 
     /**
@@ -71,7 +69,7 @@ class TerrainController extends Controller
      */
     public function edit(Terrain $terrain)
     {
-        return view("Terrain.edit");
+        return response()->json($terrain);
     }
 
     /**
@@ -81,9 +79,34 @@ class TerrainController extends Controller
      * @param  \App\Models\Terrain  $terrain
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Terrain $terrain)
+    public function update(Request $request)
     {
-        //
+
+        $request->validate([
+            "id" => "required",
+            "nom" => "required",
+            "email" => "required|email",
+            "region" => "required",
+            "phones" => "required",
+            "par" => "required",
+            "lengh" => "required",
+            "NumHoles" => "required",
+            "ville_id" => "required",
+            "description" => "required",
+        ]);
+
+
+        if (!Terrain::where('id', $request->id)
+            ->update($request->only("id", "nom", "email", "region", "phones", "par", "lengh", "NumHoles", "ville_id", "description"))) {
+            Session::flash('message', 'Error occured while updating Terrain');
+            Session::flash('message_type', 'danger');
+            return redirect()
+                ->back();
+        }
+
+        Session::flash('message', 'Terrain Was updated SuccessFuly');
+        Session::flash('message_type', 'success');
+        return redirect()->back();
     }
 
     /**

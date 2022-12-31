@@ -108,15 +108,15 @@ class UserController extends Controller
         ]);
 
         $user = User::where("email", $request->email)->get();
-        dd("got the user", $user);
-        $oMatch = Hash::make($request->CurrentPassword) === $user->password;
+
+
+        $oMatch = Hash::check($request->currentPassword, $user[0]->password);
         if (!$oMatch) {
             Session::flash('message', 'the Current password is false Please try again');
             Session::flash('message_type', 'danger');
             return redirect()
                 ->back();
         }
-        dd("Current Old Pass is func is good", $oMatch);
         $nMatch = $request->newPassword === $request->confirmPassword;
         if (!$nMatch) {
             Session::flash('message', 'the New And Confirm password are not a match');
@@ -124,19 +124,17 @@ class UserController extends Controller
             return redirect()
                 ->back();
         }
-        dd("new confirm Pass is func is good", $nMatch);
-        if (!$user->update(["password" => Hash::make($request->newPassword)])) {
+        if (!User::where("email", $request->email)->update(["password" => Hash::make($request->newPassword)])) {
 
             Session::flash('message', 'Error occured While updating the password');
             Session::flash('message_type', 'danger');
             return redirect()
                 ->back();
         }
-        dd("password was updated");
 
-        Session::flash('message', 'Role Deleted SuccessFuly');
+        Session::flash('message', 'password was updated Successfuly');
         Session::flash('message_type', 'success');
-        return redirect("/role");
+        return redirect()->back();;
     }
     /**
      * Remove the specified resource from storage.

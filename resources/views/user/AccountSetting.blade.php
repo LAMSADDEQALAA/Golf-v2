@@ -32,6 +32,7 @@
                 name="currentPassword"
                 id="currentPassword"
                 placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                value=""
               />
               <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
             </div>
@@ -47,6 +48,7 @@
                 id="newPassword"
                 name="newPassword"
                 placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                value=""
               />
               <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
             </div>
@@ -61,6 +63,7 @@
                 name="confirmPassword"
                 id="confirmPassword"
                 placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                value=""
               />
               <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
             </div>

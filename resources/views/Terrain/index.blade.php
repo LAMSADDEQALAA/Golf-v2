@@ -12,7 +12,8 @@
                         <th>#</th>
                         <th>Nom</th>
                         <th>Email</th>
-                        <th>Address</th>
+                        <th>ville</th>
+                        <th>Region</th>
                         <th>Number of holes</th>
                         <th>Par</th>
                         <th>lengh</th>
@@ -22,94 +23,36 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($terrains as $terrain )
                     <tr>
-                        <td>#</td>
-                        <td>Nom</td>
-                        <td>Email</td>
-                        <td>Address</td>
-                        <td>Number of holes</td>
-                        <td>Par</td>
-                        <td>lengh</td>
-                        <td>Phones</td>
-                        <td>Description</td>
+                        <td>{{ $terrain->id }}</td>
+                        <td>{{ $terrain->nom }}</td>
+                        <td>{{ $terrain->email }}</td>
+                        <td>{{ $terrain->Ville->nom }}</td>
+                        <td>{{ $terrain->region }}</td>
+                        <td>{{ $terrain->NumHoles }}</td>
+                        <td>{{ $terrain->par }}</td>
+                        <td>{{ $terrain->lengh }}</td>
+                        <td>{{ $terrain->phones }}</td>
+                        <td>{{ $terrain->description }}</td>
                         <td>
                     <div class="d-inline-block">
                         <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end m-0">
-                        <li><a href="{{ url("/terrain/show") }}" class="dropdown-item">Details</a></li>
+                        <li><a href="{{ route("terrain.show",["terrain" =>$terrain->id]) }}" class="dropdown-item">Details</a></li>
                         <div class="dropdown-divider"></div>
-                        <li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li>
+                        <li>
+                            <form action="{{ route("terrain.destroy",["terrain"=> $terrain->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="dropdown-item text-danger delete-record">Delete</button>
+                            </form>
                         </ul>
                         </div>
-                        <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="Edit-Terrain text-primary ti ti-pencil"></i></a>
+                        <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i id="terrain-add" data-url="{{ route('terrain.edit',["terrain"=>$terrain->id]) }}"  class="Edit-Terrain text-primary ti ti-pencil"></i></a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>#</td>
-                        <td>Nom</td>
-                        <td>Email</td>
-                        <td>Address</td>
-                        <td>Number of holes</td>
-                        <td>Par</td>
-                        <td>lengh</td>
-                        <td>Phones</td>
-                        <td>Description</td>
-                        <td>
-                    <div class="d-inline-block">
-                        <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end m-0">
-                        <li><a href="javascript:;" class="dropdown-item">Details</a></li>
-                        <div class="dropdown-divider"></div>
-                        <li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li>
-                        </ul>
-                        </div>
-                        <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                         <td>#</td>
-                        <td>Nom</td>
-                        <td>Email</td>
-                        <td>Address</td>
-                        <td>Number of holes</td>
-                        <td>Par</td>
-                        <td>lengh</td>
-                        <td>Phones</td>
-                        <td>Description</td>
-                        <td>
-                    <div class="d-inline-block">
-                        <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end m-0">
-                        <li><a href="javascript:;" class="dropdown-item">Details</a></li>
-                        <div class="dropdown-divider"></div>
-                        <li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li>
-                        </ul>
-                        </div>
-                        <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#</td>
-                        <td>Nom</td>
-                        <td>Email</td>
-                        <td>Address</td>
-                        <td>Number of holes</td>
-                        <td>Par</td>
-                        <td>lengh</td>
-                        <td>Phones</td>
-                        <td>Description</td>
-                        <td>
-                    <div class="d-inline-block">
-                        <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end m-0">
-                        <li><a href="javascript:;" class="dropdown-item">Details</a></li>
-                        <div class="dropdown-divider"></div>
-                        <li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li>
-                        </ul>
-                        </div>
-                        <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil"></i></a>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
         </table>
     </div>
@@ -126,25 +69,18 @@
       ></button>
     </div>
     <div class="offcanvas-body flex-grow-1">
-      <form class="add-new-record pt-0 row g-2" id="form-add-new-record" onsubmit="return false">
+      <form class="add-new-record pt-0 row g-2" id="form-add-new-record" action="{{ route('terrain:update') }}" method="POST">
+        @method("PUT")
+        @csrf
+        <input type="hidden" name="id" id="id">
         <div class="col-sm-12">
             <label for="Nom" class="form-label">Nom</label>
             <input
               type="text"
               class="form-control"
               id="Nom"
-              name="Nom"
+              name="nom"
               placeholder="Nom..."
-            />
-        </div>
-        <div class="col-sm-12">
-            <label for="address" class="form-label">address</label>
-            <input
-              type="text"
-              class="form-control"
-              name="address"
-              id="address"
-              placeholder="address..."
             />
         </div>
         <div class="col-sm-12">
@@ -158,15 +94,26 @@
             />
         </div>
         <div class="col-sm-12">
+            <label for="address" class="form-label">region</label>
+            <input
+              type="text"
+              class="form-control"
+              name="region"
+              id="region"
+              placeholder="address..."
+            />
+        </div>
+
+        <div class="col-sm-12">
             <label for="Phones" class="form-label">Phone Numbers</label>
-            <input id="Phones" type="text" class="form-control" name="Phones" placeholder="Phone1, Phone2, Phone3" />
+            <input id="Phones" type="text" class="form-control" name="phones" placeholder="Phone1, Phone2, Phone3" />
 
         </div>
         <div class="col-sm-12">
             <label for="exampleFormControlInput1" class="form-label">Par</label>
             <input
               type="text"
-              name="Par"
+              name="par"
               class="form-control"
               id="Par"
               placeholder="Par..."
@@ -176,7 +123,7 @@
             <label for="exampleFormControlInput1" class="form-label">Lengh</label>
             <input
               type="text"
-              name="Lengh"
+              name="lengh"
               class="form-control"
               id="Lengh"
               placeholder="Lengh..."
@@ -194,64 +141,15 @@
         </div>
         <div class="col-sm-12">
             <label class="form-label" for="Villes">Villes</label>
-            <select id="Villes" name="villes" class="select2 form-select" data-allow-clear="true">
-              <option value="">Select</option>
-              <option value="AL">Alabama</option>
-              <option value="AK">Alaska</option>
-              <option value="AZ">Arizona</option>
-              <option value="AR">Arkansas</option>
-              <option value="CA">California</option>
-              <option value="CO">Colorado</option>
-              <option value="CT">Connecticut</option>
-              <option value="DE">Delaware</option>
-              <option value="DC">District Of Columbia</option>
-              <option value="FL">Florida</option>
-              <option value="GA">Georgia</option>
-              <option value="HI">Hawaii</option>
-              <option value="ID">Idaho</option>
-              <option value="IL">Illinois</option>
-              <option value="IN">Indiana</option>
-              <option value="IA">Iowa</option>
-              <option value="KS">Kansas</option>
-              <option value="KY">Kentucky</option>
-              <option value="LA">Louisiana</option>
-              <option value="ME">Maine</option>
-              <option value="MD">Maryland</option>
-              <option value="MA">Massachusetts</option>
-              <option value="MI">Michigan</option>
-              <option value="MN">Minnesota</option>
-              <option value="MS">Mississippi</option>
-              <option value="MO">Missouri</option>
-              <option value="MT">Montana</option>
-              <option value="NE">Nebraska</option>
-              <option value="NV">Nevada</option>
-              <option value="NH">New Hampshire</option>
-              <option value="NJ">New Jersey</option>
-              <option value="NM">New Mexico</option>
-              <option value="NY">New York</option>
-              <option value="NC">North Carolina</option>
-              <option value="ND">North Dakota</option>
-              <option value="OH">Ohio</option>
-              <option value="OK">Oklahoma</option>
-              <option value="OR">Oregon</option>
-              <option value="PA">Pennsylvania</option>
-              <option value="RI">Rhode Island</option>
-              <option value="SC">South Carolina</option>
-              <option value="SD">South Dakota</option>
-              <option value="TN">Tennessee</option>
-              <option value="TX">Texas</option>
-              <option value="UT">Utah</option>
-              <option value="VT">Vermont</option>
-              <option value="VA">Virginia</option>
-              <option value="WA">Washington</option>
-              <option value="WV">West Virginia</option>
-              <option value="WI">Wisconsin</option>
-              <option value="WY">Wyoming</option>
+            <select id="Villes" name="ville_id" class="select2 form-select" data-allow-clear="true">
+                @foreach ($villes as $ville)
+                <option value="{{ $ville->id }}">{{ $ville->nom }}</option>
+                @endforeach
             </select>
         </div>
         <div class="col-sm-12 mb-4">
-            <label for="Descriptions" class="form-label">Descriptions</label>
-            <textarea class="form-control" name="description" id="Descriptions" rows="3"></textarea>
+            <label for="Description" class="form-label">Description</label>
+            <textarea class="form-control" name="description" id="Description" rows="3"></textarea>
         </div>
 
 
@@ -305,5 +203,43 @@
 
     <script src="{{ asset('assets/js/tables-datatables-basic.js') }}"></script>
     <script src="{{ asset('assets/js/form-layouts.js') }}"></script>
-@endsection
 
+    <script>
+        $(document).on("click","#terrain-add",async (e)=> {
+            let url= $(e.target).data("url");
+        try {
+        let response = await fetch(url,{
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            method: 'GET',
+        });
+        let data = await response.json();
+
+         console.log(data);
+
+        $("#id").val(data.id);
+        $("#Nom").val(data.nom)
+        $("#Email").val(data.email)
+        $("#region").val(data.region)
+        $("#Phones").val(data.phones)
+        $("#Par").val(data.par)
+        $("#Lengh").val(data.lengh)
+        $("#NumHoles").val(data.NumHoles)
+        $("#Villes").val(data.ville_id)
+        $("#Description").val(data.description)
+
+        console.log();
+        } catch (error) {
+            console.log(error);
+        }
+
+
+
+        });
+
+
+
+
+    </script>
+@endsection

@@ -16,13 +16,12 @@ return new class extends Migration
         Schema::create('terrains', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('lengh');
+            $table->string('region');
             $table->unsignedInteger('NumHoles');
             $table->unsignedInteger('par');
-            $table->string('phone1')->nullable();
-            $table->string('phone2')->nullable();
-            $table->string('phone3')->nullable();
+            $table->text('phones')->nullable();
             $table->text('description');
             $table->foreignId('ville_id')->constrained();
             $table->timestamps();

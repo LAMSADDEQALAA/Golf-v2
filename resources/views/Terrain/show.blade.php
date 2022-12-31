@@ -53,7 +53,7 @@
                     Nom
                   </strong>
                   <p class="mb-0">
-                    Tootsie roll fruitcake cookie.
+                    {{ $terrain->nom }}
                   </p>
             </div>
 
@@ -62,7 +62,7 @@
                     Address Email
                   </strong>
                   <p class="mb-0">
-                    example@gmail.com
+                    {{ $terrain->email }}
                   </p>
             </div>
 
@@ -71,16 +71,16 @@
                     Ville
                   </strong>
                   <p class="mb-0">
-                    rabat
+                    {{ $terrain->ville->nom }}
                   </p>
             </div>
 
             <div class="mb-3">
                 <strong>
-                    Address
+                    region
                   </strong>
                   <p class="mb-0">
-                    Tootsie roll fruitcake cookie. Dessert topping pie. Jujubes wafer carrot cake jelly.
+                    {{ $terrain->region }}
                   </p>
             </div>
 
@@ -91,12 +91,7 @@
                   <div class="row">
                     <div class="col-2">
                         <p class="mb-0">
-                            0687949685469
-                        </p>
-                    </div>
-                    <div class="col-2">
-                        <p class="mb-0">
-                            0687949685469
+                            {{ $terrain->phones }}
                         </p>
                     </div>
                   </div>
@@ -109,7 +104,7 @@
                     Par
                   </strong>
                   <p class="mb-0">
-                    75
+                    {{ $terrain->par }}
                   </p>
             </div>
             <div class="col-2">
@@ -117,7 +112,7 @@
                     Number of holes
                   </strong>
                   <p class="mb-0">
-                    75
+                    {{ $terrain->NumHoles }}
                   </p>
             </div>
             <div class="col-2">
@@ -125,7 +120,7 @@
                     lengh
                   </strong>
                   <p class="mb-0">
-                    75
+                    {{ $terrain->lengh }}
                   </p>
             </div>
 
@@ -136,9 +131,7 @@
                 Descriptions
               </strong>
               <p class="mb-0">
-                Tootsie roll fruitcake cookie. Dessert topping pie. Jujubes wafer carrot cake jelly. Bonbon
-                jelly-o jelly-o ice cream jelly beans candy canes cake bonbon. Cookie jelly beans marshmallow
-                jujubes sweet.
+                {{ $terrain->description }}
               </p>
           </div>
 
@@ -160,9 +153,9 @@
             cupcake gummi bears cake chocolate.
           </p>
           <p class="mb-0">
-            Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet
-            roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly
-            jelly-o tart brownie jelly.
+            <iframe width="949" height="534" src="https://www.youtube.com/embed/L5LAqIABGZE"
+             title="Laravel 9 Send Email using Gmail SMTP Server 2022 Latest" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </p>
         </div>
       </div>

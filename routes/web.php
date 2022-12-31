@@ -41,6 +41,12 @@ Route::post("/user/UpdateUserRoles", [UserController::class, 'UpdateUserRoles'])
 Route::get("/user/AccountSettings", [UserController::class, "AccountSettings"])->name('user.AccountSettings');
 // Route::get("terrain/store", [TerrainController::class, "store"]);
 
+Route::put("/ville/update", [VilleController::class, "update"])->name("ville:update");
+
+
+Route::put("/terrain/update", [TerrainController::class, "update"])->name("terrain:update");
+
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::resource('terrain', TerrainController::class);

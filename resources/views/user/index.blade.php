@@ -165,7 +165,7 @@
         </div>
     </div>
 
-    <!-- Create modal -->
+    <!-- add modal -->
     <div class="modal fade" id="add-modal"  aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
