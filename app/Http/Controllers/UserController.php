@@ -39,13 +39,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email|unique:Users,email',
             'Password' => 'required',
             'confirmPassword' => 'required',
 
         ]);
 
         $doesmtach = $request->confirmPassword === $request->Password;
+
 
         if (!$doesmtach) {
             Session::flash('message', 'The confirm Password and Password are unmatched');
@@ -54,7 +55,10 @@ class UserController extends Controller
                 ->back();
         }
 
+        $name = explode("@", $request->email)[0];
+
         $data = [
+            'name' => $name,
             'email' => $request->email,
             'password' => Hash::make($request->Password),
         ];
@@ -88,7 +92,7 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email|unique:Users,email',
             'NewPassword' => 'required',
 
         ]);
@@ -177,8 +181,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        if (!User::find($user->id)->delete()) {
+            Session::flash('message', 'Error occured while Deleting user');
+            Session::flash('message_type', 'danger');
+            return redirect()
+                ->back();
+        }
+        Session::flash('message', 'user Deleted SuccessFuly');
+        Session::flash('message_type', 'success');
+        return redirect()->back();
     }
 }

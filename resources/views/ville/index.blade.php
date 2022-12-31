@@ -65,7 +65,7 @@
                     aria-label="Close"
                 ></button>
                 </div>
-                <form id="edit-role" action="{{ route("ville:update") }}" method="POST">
+                <form id="edit-ville" action="{{ route("ville:update") }}" method="POST">
                     @method('PUT')
                     @csrf
                     <input type="hidden" name="id" id="id-ville">
@@ -107,7 +107,7 @@
                     aria-label="Close"
                 ></button>
                 </div>
-                <form action="{{ route('ville.store') }}" method="post">
+                <form action="{{ route('ville.store') }}" id="add-ville" method="post">
                 @csrf
                 <div class="modal-body">
                 <div class="row">
@@ -147,7 +147,7 @@
                     aria-label="Close"
                 ></button>
                 </div>
-                <form id="edit-role" action="{{ route("ville:update") }}" method="POST">
+                <form id="edit-ville" action="{{ route("ville:update") }}" method="POST">
                     @method('PUT')
                     @csrf
                     <input type="hidden" name="id" id="id-ville">
@@ -190,7 +190,7 @@
                     aria-label="Close"
                 ></button>
                 </div>
-                <form action="{{ route('ville.store') }}" method="post">
+                <form action="{{ route('ville.store') }}" id="add-ville" method="post">
                 @csrf
                 <div class="modal-body">
                 <div class="row">
@@ -278,5 +278,94 @@
             console.log(error);
         }
 }
+    </script>
+    <script>
+        const formAdd = document.querySelector("#add-ville");
+        const formEdit = document.querySelector("#edit-ville");
+       (function () {
+                if (formAdd) {
+                    const fv = FormValidation.formValidation(formAdd, {
+                        fields: {
+                            ville: {
+                                validators: {
+                                    notEmpty: {
+                                        message: "Please enter a City name",
+                                    },
+
+                                },
+                            },
+
+                        },
+                        plugins: {
+                            trigger: new FormValidation.plugins.Trigger(),
+                            bootstrap5: new FormValidation.plugins.Bootstrap5({
+                                eleValidClass: "",
+                                rowSelector: ".mb-3",
+                            }),
+                            submitButton: new FormValidation.plugins.SubmitButton(),
+
+                            defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                            autoFocus: new FormValidation.plugins.AutoFocus(),
+                        },
+                        init: (instance) => {
+                            instance.on("plugins.message.placed", function (e) {
+                                if (
+                                    e.element.parentElement.classList.contains(
+                                        "input-group"
+                                    )
+                                ) {
+                                    e.element.parentElement.insertAdjacentElement(
+                                        "afterend",
+                                        e.messageElement
+                                    );
+                                }
+                            });
+                        },
+                    });
+                }
+       })();
+       (function () {
+                if (formEdit) {
+                    const fv = FormValidation.formValidation(formEdit, {
+                        fields: {
+                            ville: {
+                                validators: {
+                                    notEmpty: {
+                                        message: "Please enter a City name",
+                                    },
+
+                                },
+                            },
+
+                        },
+                        plugins: {
+                            trigger: new FormValidation.plugins.Trigger(),
+                            bootstrap5: new FormValidation.plugins.Bootstrap5({
+                                eleValidClass: "",
+                                rowSelector: ".mb-3",
+                            }),
+                            submitButton: new FormValidation.plugins.SubmitButton(),
+
+                            defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                            autoFocus: new FormValidation.plugins.AutoFocus(),
+                        },
+                        init: (instance) => {
+                            instance.on("plugins.message.placed", function (e) {
+                                if (
+                                    e.element.parentElement.classList.contains(
+                                        "input-group"
+                                    )
+                                ) {
+                                    e.element.parentElement.insertAdjacentElement(
+                                        "afterend",
+                                        e.messageElement
+                                    );
+                                }
+                            });
+                        },
+                    });
+                }
+        })();
+
     </script>
 @endsection

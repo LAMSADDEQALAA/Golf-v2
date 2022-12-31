@@ -97,14 +97,17 @@ class VilleController extends Controller
      */
     public function destroy(Ville $ville)
     {
-        if (!Ville::find($ville->id)->delete()) {
-            Session::flash('message', 'Error occured while Deleting Ville');
+        try {
+            Ville::find($ville->id)->delete();
+
+            Session::flash('message', 'City Deleted SuccessFuly');
+            Session::flash('message_type', 'success');
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            Session::flash('message', 'This record is related To other records Deletion is not possible');
             Session::flash('message_type', 'danger');
             return redirect()
                 ->back();
         }
-        Session::flash('message', 'Ville Deleted SuccessFuly');
-        Session::flash('message_type', 'success');
-        return redirect()->back();
     }
 }

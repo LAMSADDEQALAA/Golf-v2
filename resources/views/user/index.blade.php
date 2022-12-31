@@ -233,7 +233,7 @@
                     <div class="col-12 mb-4">
                         <label for="select2PrimaryAdd" class="form-label">Roles</label>
                         <div class="select2-primary">
-                        <select id="select2PrimaryAdd" class="select2 form-select" multiple>
+                        <select id="select2PrimaryAdd" name="roles[]" class="select2 form-select" multiple>
                             @foreach ( $roles as $role )
                             <option value="{{ $role->name }}" >{{ $role->name }}</option>
                             @endforeach
@@ -418,7 +418,7 @@
                     <div class="col-12 mb-4">
                         <label for="select2PrimaryAdd" class="form-label">Roles</label>
                         <div class="select2-primary">
-                        <select id="select2PrimaryAdd" class="select2 form-select" multiple>
+                        <select id="select2PrimaryAdd" name="roles[]" class="select2 form-select" multiple>
                             @foreach ( $roles as $role )
                             <option value="{{ $role->name }}" >{{ $role->name }}</option>
                             @endforeach

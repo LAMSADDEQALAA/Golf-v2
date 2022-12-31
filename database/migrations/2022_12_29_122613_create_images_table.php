@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->text('ImgPath');
+            $table->boolean("ismain");
             $table->foreignId('terrain_id')->constrained();
             $table->timestamps();
         });

@@ -200,7 +200,7 @@
                 aria-label="Close"
               ></button>
             </div>
-            <form action="{{ route('role.store') }}" method="POST">
+            <form action="{{ route('role.store') }}" id="roleAdd" method="POST">
             @csrf
             <div class="modal-body">
               <div class="row">
@@ -434,6 +434,10 @@
     <script src="{{ asset('assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
 
+    <script src="{{ asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js') }}"></script>
+
     <script src="{{ asset('assets/js/tables-datatables-basic.js') }}"></script>
     <script src="{{ asset('assets/js/forms-selects.js') }}"></script>
 
@@ -469,7 +473,96 @@
                 console.log(error);
             }
     }
-
     </script>
     {{-- <script src="{{ asset('assets/js/ui-modals.js') }}"></script> --}}
+   {{-- form validation  --}}
+    <script>
+        const formAdd = document.querySelector("#roleAdd");
+        const formEdit = document.querySelector("#edit-role");
+       (function () {
+                if (formAdd) {
+                    const fv = FormValidation.formValidation(formAdd, {
+                        fields: {
+                            role: {
+                                validators: {
+                                    notEmpty: {
+                                        message: "Please enter a role name",
+                                    },
+
+                                },
+                            },
+
+                        },
+                        plugins: {
+                            trigger: new FormValidation.plugins.Trigger(),
+                            bootstrap5: new FormValidation.plugins.Bootstrap5({
+                                eleValidClass: "",
+                                rowSelector: ".mb-3",
+                            }),
+                            submitButton: new FormValidation.plugins.SubmitButton(),
+
+                            defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                            autoFocus: new FormValidation.plugins.AutoFocus(),
+                        },
+                        init: (instance) => {
+                            instance.on("plugins.message.placed", function (e) {
+                                if (
+                                    e.element.parentElement.classList.contains(
+                                        "input-group"
+                                    )
+                                ) {
+                                    e.element.parentElement.insertAdjacentElement(
+                                        "afterend",
+                                        e.messageElement
+                                    );
+                                }
+                            });
+                        },
+                    });
+                }
+       })();
+       (function () {
+                if (formEdit) {
+                    const fv = FormValidation.formValidation(formEdit, {
+                        fields: {
+                            role: {
+                                validators: {
+                                    notEmpty: {
+                                        message: "Please enter a role name",
+                                    },
+
+                                },
+                            },
+
+                        },
+                        plugins: {
+                            trigger: new FormValidation.plugins.Trigger(),
+                            bootstrap5: new FormValidation.plugins.Bootstrap5({
+                                eleValidClass: "",
+                                rowSelector: ".mb-3",
+                            }),
+                            submitButton: new FormValidation.plugins.SubmitButton(),
+
+                            defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                            autoFocus: new FormValidation.plugins.AutoFocus(),
+                        },
+                        init: (instance) => {
+                            instance.on("plugins.message.placed", function (e) {
+                                if (
+                                    e.element.parentElement.classList.contains(
+                                        "input-group"
+                                    )
+                                ) {
+                                    e.element.parentElement.insertAdjacentElement(
+                                        "afterend",
+                                        e.messageElement
+                                    );
+                                }
+                            });
+                        },
+                    });
+                }
+        })();
+
+    </script>
 @endsection

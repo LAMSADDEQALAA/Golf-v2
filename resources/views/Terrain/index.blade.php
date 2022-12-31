@@ -14,9 +14,7 @@
                         <th>Email</th>
                         <th>ville</th>
                         <th>Region</th>
-                        <th>Number of holes</th>
-                        <th>Par</th>
-                        <th>lengh</th>
+                        <th>Attrs</th>
                         <th>Phones</th>
                         <th>Description</th>
                         <th>Actions</th>
@@ -30,14 +28,16 @@
                         <td>{{ $terrain->email }}</td>
                         <td>{{ $terrain->Ville->nom }}</td>
                         <td>{{ $terrain->region }}</td>
-                        <td>{{ $terrain->NumHoles }}</td>
-                        <td>{{ $terrain->par }}</td>
-                        <td>{{ $terrain->lengh }}</td>
+                        <td >
+                            <p >Number of holes:<span class="text-secondary opacity-25"> {{ $terrain->NumHoles }}</span></p>
+                            <p >Par:<span class="text-secondary opacity-25"> {{ $terrain->par }} </span></p>
+                            <p >Lengh:<span class="text-secondary opacity-25"> {{ $terrain->lengh }} </span></p>
+                        </td>
                         <td>
                             <p>{{ $terrain->phone1 }}</p>
                             <p>{{ $terrain->phone2 }}</p>
                         </td>
-                        <td>{{ $terrain->description }}</td>
+                        <td class="text-break">{{ $terrain->description }}</td>
                         <td>
                         @hasrole("super-admin")
                             <div class="d-inline-block">

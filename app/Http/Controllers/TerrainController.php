@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Terrain;
+use App\Models\Video;
 use App\Models\Ville;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 use function PHPSTORM_META\map;
 
@@ -41,7 +43,8 @@ class TerrainController extends Controller
      */
     public function create()
     {
-        return view("Terrain.create");
+        $villes = Ville::all();
+        return view("Terrain.create", ["villes" => $villes]);
     }
 
     /**
@@ -52,6 +55,71 @@ class TerrainController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "nom" => "required",
+            "email" => "required|email|unique:terrains,email",
+            "region" => "required",
+            "phone1" => "required|unique:terrains,phone1",
+            "phone2" => "unique:terrains",
+            "par" => "required",
+            "lengh" => "required",
+            "NumHoles" => "required",
+            "ville_id" => "required",
+            "description" => "required",
+        ]);
+
+        $terrain = Terrain::create($request->only("nom", "email", "region", "phone1", "phone2", "par", "lengh", "NumHoles", "description", "ville_id"));
+        if (!$terrain) {
+            Session::flash('message', 'Error occured while Adding the Terrain');
+            Session::flash('message_type', 'danger');
+            return redirect()
+                ->back();
+        }
+        //store images and insert paths in db
+        $files = $request->file('file');
+        if ($files) {
+            foreach ($files as $file) {
+                $name = $file->getClientOriginalName();
+                $path = $file->storeAs('TerrainsImgaes', $name);
+                if (!Image::create([
+                    "ImgPath" => $path,
+                    "ismain" => false,
+                    "terrain_id" => $terrain->id,
+                ])) {
+                    Session::flash('message', 'Error occured while Adding Pictured Associated with the Terrain');
+                    Session::flash('message_type', 'danger');
+                    return redirect()
+                        ->back();
+                }
+            }
+        }
+        //insert video links
+        if ($request->videolinks) {
+            $links = collect(json_decode($request->videolinks));
+
+
+            foreach ($links as $link) {
+                if (!Str::contains($link->value, 'youtube')) {
+                    Session::flash('message', "The link '" . $link->value . "' Provided is not A youtube Link");
+                    Session::flash('message_type', 'warning');
+                    return redirect()
+                        ->back();
+                }
+                if (!Video::create([
+                    "VideoUrl" => $link->value,
+                    "terrain_id" => $terrain->id,
+                ])) {
+                    Session::flash('message', 'Error occured while Adding Video Links Associated with the Terrain');
+                    Session::flash('message_type', 'danger');
+                    return redirect()
+                        ->back();
+                }
+            }
+        }
+
+        Session::flash('message', 'Terrain Was Added SuccessFuly');
+        Session::flash('message_type', 'success');
+        return redirect("/terrain");
     }
 
     /**
@@ -63,7 +131,7 @@ class TerrainController extends Controller
     public function show(Terrain $terrain)
     {
 
-        return view("Terrain.show", compact("terrain"));
+        return view("Terrain.show", ["terrain" => $terrain]);
     }
 
     /**
@@ -90,7 +158,7 @@ class TerrainController extends Controller
         $request->validate([
             "id" => "required",
             "nom" => "required",
-            "email" => "required|email",
+            "email" => "required|email|unique:terrains,email",
             "region" => "required",
             "phone1" => "required",
             "par" => "required",
@@ -122,6 +190,17 @@ class TerrainController extends Controller
      */
     public function destroy(Terrain $terrain)
     {
-        //
+        try {
+            Terrain::find($terrain->id)->delete();
+
+            Session::flash('message', 'Terrain Deleted SuccessFuly');
+            Session::flash('message_type', 'success');
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            Session::flash('message', 'This record is related To other records Deletion is not possible');
+            Session::flash('message_type', 'danger');
+            return redirect()
+                ->back();
+        }
     }
 }
