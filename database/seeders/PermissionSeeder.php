@@ -16,11 +16,11 @@ class PermissionSeeder extends Seeder
     public function run()
     {
         //user perms
-        Permission::updateOrCreate(['name' => 'view-users']);
-        Permission::updateOrCreate(['name' => 'edit-users']);
-        Permission::updateOrCreate(['name' => 'add-users']);
-        Permission::updateOrCreate(['name' => 'delete-users']);
-        Permission::updateOrCreate(['name' => 'assign-user-roles']);
+        Permission::updateOrCreate(['name' => 'view-user']);
+        Permission::updateOrCreate(['name' => 'edit-user']);
+        Permission::updateOrCreate(['name' => 'add-user']);
+        Permission::updateOrCreate(['name' => 'delete-user']);
+        Permission::updateOrCreate(['name' => 'assign-user-role']);
         //ville perms
         Permission::updateOrCreate(['name' => 'view-Ville']);
         Permission::updateOrCreate(['name' => 'edit-Ville']);
@@ -33,7 +33,7 @@ class PermissionSeeder extends Seeder
         Permission::updateOrCreate(['name' => 'delete-terrain']);
         //role perms
         Permission::updateOrCreate(['name' => 'edit-role']);
-        Permission::updateOrCreate(['name' => 'add-roles']);
+        Permission::updateOrCreate(['name' => 'add-role']);
         Permission::updateOrCreate(['name' => 'delete-role']);
         Permission::updateOrCreate(['name' => 'Update-role-permissions']);
         Permission::updateOrCreate(['name' => 'view-role']);

@@ -13,6 +13,11 @@ class RoleController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('role_or_permission:super-admin|edit-role', ['only' => ['edit', 'update']]);
+        $this->middleware('role_or_permission:super-admin|delete-role', ['only' => 'destroy']);
+        $this->middleware('role_or_permission:super-admin|add-role', ['only' => 'store']);
+        $this->middleware('role_or_permission:super-admin|Update-role-permissions', ['only' => ['EditRolePermissions', 'UpdateRolePermissions']]);
+        $this->middleware('role_or_permission:super-admin|view-role', ['only' => 'index']);
     }
     /**
      * Display a listing of the resource.
@@ -21,7 +26,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::all()->where("name", "!==", "super-admin");
         $permissions = Permission::all();
 
         $cats = ["role", "user", "terrain", "Ville"];

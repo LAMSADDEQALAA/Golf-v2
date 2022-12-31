@@ -10,16 +10,9 @@ class VideoController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('role_or_permission:super-admin|edit-terrain', ['only' => ['edit', 'destroy']]);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view("video.index");
-    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -30,18 +23,6 @@ class VideoController extends Controller
     {
         //
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Video  $video
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Video $video)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      *

@@ -16,6 +16,6 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        Role::updateOrCreate(['name' => "Super-Admin"])->syncPermissions(["edit-role"]);
+        Role::updateOrCreate(['name' => "super-admin"]);
     }
 }

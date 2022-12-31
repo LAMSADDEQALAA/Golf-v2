@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Terrain;
 use App\Models\Ville;
 use Illuminate\Http\Request;
-use \Illuminate\Support\Collection;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Session;
 
 use function PHPSTORM_META\map;
@@ -15,6 +16,10 @@ class TerrainController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('role_or_permission:super-admin|edit-terrain', ['only' => ['edit', 'update']]);
+        $this->middleware('role_or_permission:super-admin|delete-terrain', ['only' => 'destroy']);
+        $this->middleware('role_or_permission:super-admin|add-terrain', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:super-admin|view-terrain', ['only' => ['index', 'show']]);
     }
     /**
      * Display a listing of the resource.
@@ -87,7 +92,7 @@ class TerrainController extends Controller
             "nom" => "required",
             "email" => "required|email",
             "region" => "required",
-            "phones" => "required",
+            "phone1" => "required",
             "par" => "required",
             "lengh" => "required",
             "NumHoles" => "required",
@@ -97,7 +102,7 @@ class TerrainController extends Controller
 
 
         if (!Terrain::where('id', $request->id)
-            ->update($request->only("id", "nom", "email", "region", "phones", "par", "lengh", "NumHoles", "ville_id", "description"))) {
+            ->update($request->only("id", "nom", "email", "region", "phone1", "phone2", "par", "lengh", "NumHoles", "ville_id", "description"))) {
             Session::flash('message', 'Error occured while updating Terrain');
             Session::flash('message_type', 'danger');
             return redirect()

@@ -77,6 +77,16 @@
             <!-- /Logo -->
             <h3 class="mb-1 fw-bold">Welcome to Vuexy! 👋</h3>
             <p class="mb-4">Please sign-in to your account and start the adventure</p>
+            @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                        <div class="alert alert-warning d-flex align-items-center" role="alert">
+                            <span class="alert-icon text-warning me-2">
+                                <i class="ti ti-bell ti-xs"></i>
+                            </span>
+                                {{ $error }}
+                             </div>
+                        @endforeach
+                @endif
 
             <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
                 @csrf
@@ -90,11 +100,6 @@
                   placeholder="Enter your email or username"
                   autofocus
                 />
-                @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
               </div>
 
               <div class="mb-3 form-password-toggle">
@@ -112,11 +117,6 @@
                   />
                   <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
                 </div>
-                @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-               @enderror
               </div>
               <div class="mb-3">
                 <div class="form-check">

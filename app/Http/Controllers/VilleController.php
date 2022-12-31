@@ -11,6 +11,10 @@ class VilleController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('role_or_permission:super-admin|edit-Ville', ['only' => ['edit', 'update']]);
+        $this->middleware('role_or_permission:super-admin|delete-Ville', ['only' => 'destroy']);
+        $this->middleware('role_or_permission:super-admin|add-Ville', ['only' => 'store']);
+        $this->middleware('role_or_permission:super-admin|view-Ville', ['only' => 'index']);
     }
     /**
      * Display a listing of the resource.

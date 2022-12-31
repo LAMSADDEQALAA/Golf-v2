@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('region');
             $table->unsignedInteger('NumHoles');
             $table->unsignedInteger('par');
-            $table->text('phones')->nullable();
+            $table->text('phone1');
+            $table->text('phone2')->nullable();
             $table->text('description');
             $table->foreignId('ville_id')->constrained();
             $table->timestamps();

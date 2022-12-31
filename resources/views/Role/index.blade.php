@@ -27,27 +27,62 @@
 
                         </td>
                         <td>
-                    <div class="d-inline-block">
-                        <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end m-0">
-                        <li><a href="javascript:;" class="dropdown-item"
-                            data-url="{{ route('role.EditRolePerm',["role"=>$role->id]) }}"
-                            data-bs-toggle="modal"
-                            data-bs-target="#Edit-perm-modal"
-                            id="Edit-perm"
-                            >Edit Permissions</a></li>
-                        <div class="dropdown-divider"></div>
-                        <li>
-                            <form action="{{ route("role.destroy",["role"=> $role->id]) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="dropdown-item text-danger delete-record">Delete</button>
-                            </form>
-                        </li>
-                        </ul>
-                        </div>
-                        <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil" data-url="{{ route('role.edit',["role"=>$role->id]) }}" id="Edit-role" data-bs-toggle="modal"
-                            data-bs-target="#Edit-modal"></i></a>
+                        @hasrole("super-admin")
+                            <div class="d-inline-block">
+                            <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end m-0">
+                            <li><a href="javascript:;" class="dropdown-item"
+                                data-url="{{ route('role.EditRolePerm',["role"=>$role->id]) }}"
+                                data-bs-toggle="modal"
+                                data-bs-target="#Edit-perm-modal"
+                                id="Edit-perm"
+                                >Edit Permissions</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li>
+                                <form action="{{ route("role.destroy",["role"=> $role->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="dropdown-item text-danger delete-record">Delete</button>
+                                </form>
+                            </li>
+                            </ul>
+                            </div>
+                            <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil" data-url="{{ route('role.edit',["role"=>$role->id]) }}" id="Edit-role" data-bs-toggle="modal"
+                                data-bs-target="#Edit-modal"></i>
+                            </a>
+                        @else
+                           @if (auth()->user()->can("update-role-permissions") || auth()->user()->can("delete-role"))
+                            <div class="d-inline-block">
+                                <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end m-0">
+                                    @can("update-role-permissions")
+
+                                    <li><a href="javascript:;" class="dropdown-item"
+                                        data-url="{{ route('role.EditRolePerm',["role"=>$role->id]) }}"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#Edit-perm-modal"
+                                        id="Edit-perm"
+                                        >Edit Permissions</a></li>
+                                    @endcan
+                                <div class="dropdown-divider"></div>
+                                @can("delete-role")
+                                <li>
+                                    <form action="{{ route("role.destroy",["role"=> $role->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="dropdown-item text-danger delete-record">Delete</button>
+                                    </form>
+                                </li>
+                                @endcan
+                                </ul>
+                                </div>
+                            @endif
+                                @can("edit-role")
+                                <a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil" data-url="{{ route('role.edit',["role"=>$role->id]) }}" id="Edit-role" data-bs-toggle="modal"
+                                    data-bs-target="#Edit-modal"></i>
+                                </a>
+                                @endcan
+                        @endhasrole
                         </td>
                     </tr>
                     @endforeach
@@ -56,6 +91,7 @@
     </div>
     </div>
     <!-- edit Perms modal -->
+    @hasrole("super-admin")
     <div class="modal fade" id="Edit-perm-modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -205,6 +241,162 @@
           </div>
         </div>
     </div>
+    @else
+    @can("edit-role")
+    <div class="modal fade" id="Edit-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalCenterTitle">Role edit form</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+        <form id="edit-role" action="{{ route("role:update") }}" method="POST">
+            @method('PUT')
+            @csrf
+            <div class="modal-body">
+              <div class="row">
+                <div class="col mb-3">
+                    <input type="hidden" name="id" id="e-id">
+                    <label for="e_Role" class="form-label">Role</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="role"
+                      id="e_Role"
+                      placeholder="Enter Role name..."
+                      value=""
+                    />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+          </div>
+        </div>
+    </div>
+    @endcan
+    @can("add-role")
+    <div class="modal fade" id="add-modal"  aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalCenterTitle">Role Add Form</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <form action="{{ route('role.store') }}" method="POST">
+            @csrf
+            <div class="modal-body">
+              <div class="row">
+                <div class="col mb-3">
+                    <label for="Role-Add" class="form-label">Role</label>
+                    <input
+                      type="text"
+                      name="role"
+                      id="Role-Add"
+                      class="form-control"
+                      placeholder="Enter Name"
+                    />
+                  </div>
+              </div>
+              <div class="row g-2">
+                <div class="col-12 mb-4">
+                    <label for="Permissions-Add" class="form-label">Permissions</label>
+                    <select id="Permissions-Add" class="select2 form-select" name="permsissions[]" multiple>
+                       @foreach ( $perms as $key => $perm )
+                       <optgroup label="{{ $key  }}">
+                        @foreach ( $perm as $value )
+                          <option value="{{ $value->name }}">{{ $value->name  }}</option>
+                        @endforeach
+                       </optgroup>
+                       @endforeach
+
+                    </select>
+                  </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+          </div>
+        </div>
+    </div>
+    @endcan
+    @can("update-role-permissions")
+    <div class="modal fade" id="Edit-perm-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalCenterTitle">Role permissions edit</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <form action="{{ route('role.UpdateRolePerm') }}" method="POST">
+                @csrf
+            <div class="modal-body">
+              <div class="row">
+                <div class="col mb-3">
+                    <input type="hidden" id="id-edit-perm" name="id">
+                    <label for="role-edit-perm" class="form-label">Role</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="role-edit-perm"
+                      placeholder="Readonly input"
+                      readonly
+                    />
+                </div>
+              </div>
+              <div class="row g-2">
+                <div class="col-12 mb-4">
+                    <label for="Permission-edit-perm" class="form-label">Permissions</label>
+                    <select id="Permission-edit-perm" name="perms[]" class="select2 form-select" multiple>
+                        @foreach ( $perms as $key => $perm )
+                        <optgroup label="{{ $key  }}">
+                         @foreach ( $perm as $value )
+                           <option value="{{ $value->name }}">{{ $value->name  }}</option>
+                         @endforeach
+                        </optgroup>
+                        @endforeach
+                    </select>
+                  </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+          </div>
+        </div>
+    </div>
+    @endcan
+
+    @endhasrole
     <!--/ DataTable with Buttons -->
 @endsection
 

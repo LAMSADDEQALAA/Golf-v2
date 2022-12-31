@@ -7,19 +7,14 @@ use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('role_or_permission:super-admin|edit-terrain', ['only' => ['edit', 'destroy']]);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view("image.index");
-    }
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -30,17 +25,7 @@ class ImageController extends Controller
     {
         //
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Image $image)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.
