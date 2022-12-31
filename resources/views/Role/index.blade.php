@@ -1,5 +1,6 @@
 @extends("layout.app")
-@section('title','Roles')
+@section("section","Roles")
+@section('title','Table')
 
 
 @section("content")

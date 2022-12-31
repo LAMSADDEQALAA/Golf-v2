@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -27,6 +28,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+
         $roles = Role::all()->where("name", "!==", "super-admin");
         return view("user.index", ["users" => $users, "roles" => $roles]);
     }

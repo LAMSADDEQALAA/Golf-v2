@@ -1,5 +1,7 @@
 @extends("layout.app")
-@section('title','Terrains')
+
+@section("section","Terrains")
+@section('title','Table')
 
 
 @section("content")
@@ -25,17 +27,21 @@
                     <tr>
                         <td>{{ $terrain->id }}</td>
                         <td>{{ $terrain->nom }}</td>
-                        <td>{{ $terrain->email }}</td>
+                        <td class="text-break">{{ $terrain->email }}</td>
                         <td>{{ $terrain->Ville->nom }}</td>
                         <td>{{ $terrain->region }}</td>
                         <td >
-                            <p >Number of holes:<span class="text-secondary opacity-25"> {{ $terrain->NumHoles }}</span></p>
-                            <p >Par:<span class="text-secondary opacity-25"> {{ $terrain->par }} </span></p>
-                            <p >Lengh:<span class="text-secondary opacity-25"> {{ $terrain->lengh }} </span></p>
+                            <p><strong>Number of holes:</strong><span class="text-secondary opacity-25"> {{ $terrain->NumHoles }}</span></p>
+                            <p><strong>Par:</strong><span class="text-secondary opacity-25"> {{ $terrain->par }} </span></p>
+                            <p><strong>Lengh:</strong> <span class="text-secondary opacity-25"> {{ $terrain->lengh }} </span></p>
                         </td>
                         <td>
-                            <p>{{ $terrain->phone1 }}</p>
-                            <p>{{ $terrain->phone2 }}</p>
+                            <div class="d-flex">
+                            <strong>n°1:</strong><span class="text-secondary opacity-25 text-break">{{ $terrain->phone1 }}</span>
+                            </div>
+                            <div class="d-flex">
+                            <strong>n°2:</strong><span class="text-secondary opacity-25 text-break">{{ $terrain->phone2 }}</span>
+                            </div>
                         </td>
                         <td class="text-break">{{ $terrain->description }}</td>
                         <td>

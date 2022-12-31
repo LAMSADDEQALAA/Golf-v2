@@ -1,5 +1,7 @@
 @extends("layout.app")
-@section('title','Terrain')
+
+@section("section","Terrains")
+@section('title','Details')
 
 
 @section("content")
@@ -84,18 +86,24 @@
                   </p>
             </div>
 
-            <div class="mb-3">
-                <strong>
-                    Phones
-                  </strong>
-                  <div class="row">
-                    <div class="col-2">
-                        <p class="mb-0">
-                            {{ $terrain->phones }}
-                        </p>
-                    </div>
-                  </div>
-            </div>
+            <div class="row mb-3">
+                <div class="col-2">
+                    <strong>
+                        Phone 1
+                      </strong>
+                      <p class="mb-0">
+                        {{ $terrain->phone1 }}
+                      </p>
+                </div>
+                <div class="col-2">
+                    <strong>
+                        Phone 2
+                      </strong>
+                      <p class="mb-0">
+                        {{ $terrain->phone2 }}
+                      </p>
+                </div>
+              </div>
 
           <div class="row mb-3">
 
