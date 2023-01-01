@@ -27,8 +27,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-
+        $users = User::whereDoesntHave("roles", fn ($q) => $q->where("name", "=", "super-admin"))->get();
         $roles = Role::all()->where("name", "!==", "super-admin");
         return view("user.index", ["users" => $users, "roles" => $roles]);
     }
