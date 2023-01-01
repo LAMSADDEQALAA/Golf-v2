@@ -94,10 +94,21 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|unique:Users,email',
+            'email' => 'required|email',
             'NewPassword' => 'required',
+            'confirmPassword' => 'required',
 
         ]);
+
+        $doesmtach = $request->confirmPassword === $request->NewPassword;
+
+
+        if (!$doesmtach) {
+            Session::flash('message', 'The confirm Password and New Password are unmatched');
+            Session::flash('message_type', 'warning');
+            return redirect()
+                ->back();
+        }
 
         $data = [
             'email' => $request->email,

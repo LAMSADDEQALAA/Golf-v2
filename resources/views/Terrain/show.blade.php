@@ -1,6 +1,6 @@
 @extends("layout.app")
 
-@section("section","Terrains")
+@section("section","Fields")
 @section('title','Details')
 
 
@@ -53,7 +53,7 @@
             <h6 class="pb-1 mb-4 text-muted">Terrain Details</h6>
             <div class="mb-3">
                 <strong>
-                    Nom
+                    Name
                   </strong>
                   <p class="mb-0">
                     {{ $terrain->nom }}
@@ -71,7 +71,7 @@
 
             <div class="mb-3">
                 <strong>
-                    Ville
+                    City
                   </strong>
                   <p class="mb-0">
                     {{ $terrain->ville->nom }}
@@ -80,7 +80,7 @@
 
             <div class="mb-3">
                 <strong>
-                    region
+                    Region
                   </strong>
                   <p class="mb-0">
                     {{ $terrain->region }}
@@ -126,7 +126,7 @@
             </div>
             <div class="col-2">
                 <strong>
-                    lengh
+                    Lengh
                   </strong>
                   <p class="mb-0">
                     {{ $terrain->lengh }}

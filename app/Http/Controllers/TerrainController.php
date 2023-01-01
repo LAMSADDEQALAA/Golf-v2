@@ -158,7 +158,7 @@ class TerrainController extends Controller
         $request->validate([
             "id" => "required",
             "nom" => "required",
-            "email" => "required|email|unique:terrains,email",
+            "email" => "required|email",
             "region" => "required",
             "phone1" => "required",
             "par" => "required",

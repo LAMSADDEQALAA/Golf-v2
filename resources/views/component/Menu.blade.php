@@ -5,7 +5,7 @@
         <li class="menu-item">
           <a href="{{ route('home') }}" class="menu-link ">
             <i class="menu-icon tf-icons ti ti-smart-home"></i>
-            <div data-i18n="Dashboards">Dashboards</div>
+            <div data-i18n="Dashboard">Dashboard</div>
           </a>
         </li>
 
@@ -14,7 +14,7 @@
         <li class="menu-item">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
               <i class="menu-icon tf-icons ti ti-layout-grid"></i>
-              <div data-i18n="Terrains">Terrains</div>
+              <div data-i18n="Fields">Fields</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
@@ -66,7 +66,7 @@
             <li class="menu-item">
                 <a href="{{ route('ville.index') }}" class="menu-link ">
                 <i class="menu-icon tf-icons ti ti-layout-grid"></i>
-                <div data-i18n="Villes">Cities</div>
+                <div data-i18n="Cities">Cities</div>
                 </a>
             </li>
           @else
@@ -74,7 +74,7 @@
             <li class="menu-item">
                 <a href="{{ route('ville.index') }}" class="menu-link ">
                 <i class="menu-icon tf-icons ti ti-layout-grid"></i>
-                <div data-i18n="Villes">Cities</div>
+                <div data-i18n="Cities">Cities</div>
                 </a>
             </li>
             @endcan

@@ -1,6 +1,6 @@
 @extends("layout.app")
 
-@section("section","Terrains")
+@section("section","Fields")
 @section('title','Table')
 
 
@@ -14,9 +14,9 @@
                         <th>#</th>
                         <th>Nom</th>
                         <th>Email</th>
-                        <th>ville</th>
+                        <th>City</th>
                         <th>Region</th>
-                        <th>Attrs</th>
+                        <th>Specs</th>
                         <th>Phones</th>
                         <th>Description</th>
                         <th>Actions</th>

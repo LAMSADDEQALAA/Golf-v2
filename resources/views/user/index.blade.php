@@ -179,12 +179,23 @@
                     </div>
                     <div class="row">
                     <div class="col mb-3">
-                        <label for="exampleFormControlReadOnlyInput1" class="form-label">New Password</label>
+                        <label for="NewPassword" class="form-label">New Password</label>
                         <input
                             class="form-control"
-                            type="text"
+                            type="password"
                             name="NewPassword"
                             id="NewPassword"
+                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                            value=""
+                        />
+                    </div>
+                    <div class="col mb-3">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input
+                            class="form-control"
+                            type="password"
+                            name="confirmPassword"
+                            id="confirmPassword"
                             placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                             value=""
                         />
@@ -254,8 +265,7 @@
                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                         />
                     </div>
-                </div>
-                <div class="row">
+
                     <div class="col mb-3">
                         <label for="confirmPassword" class="form-label">Confirm Password</label>
                         <input
@@ -267,6 +277,7 @@
                         />
                     </div>
                 </div>
+
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
@@ -632,7 +643,7 @@
             })();
 
             (function () {
-                // Form validation for Add new record
+                // Form validation for edit record
                 if (formEdit) {
                     const fv = FormValidation.formValidation(formEdit, {
                         fields: {
@@ -650,6 +661,27 @@
                         validators: {
                             notEmpty: {
                                 message: "Please enter new password",
+                            },
+                            stringLength: {
+                                min: 8,
+                                message:
+                                    "Password must be more than 8 characters",
+                            },
+                        },
+                    },
+                    confirmPassword: {
+                        validators: {
+                            notEmpty: {
+                                message: "Please enter a password",
+                            },
+                            identical: {
+                                compare: function () {
+                                    return formEdit.querySelector(
+                                        '[name="NewPassword"]'
+                                    ).value;
+                                },
+                                message:
+                                    "The New password and its confirm are not the same",
                             },
                             stringLength: {
                                 min: 8,

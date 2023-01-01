@@ -1,5 +1,5 @@
 @extends("layout.app")
-@section("section","Villes")
+@section("section","Cities")
 @section('title','Table')
 
 
@@ -11,8 +11,8 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nom De Ville</th>
-                        <th>Numero des Terrain Golf</th>
+                        <th>City name</th>
+                        <th>Count of Golf Fields</th>
                         <th>Actions</th>
                     </tr>
                 </thead>

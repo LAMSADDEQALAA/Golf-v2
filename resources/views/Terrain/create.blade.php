@@ -1,5 +1,5 @@
 @extends("layout.app")
-@section("section","Terrains")
+@section("section","Fields")
 @section('title','Add Form')
 
 
