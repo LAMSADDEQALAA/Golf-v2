@@ -80,9 +80,9 @@ class TerrainController extends Controller
         if ($files) {
             foreach ($files as $file) {
                 $name = $file->getClientOriginalName();
-                $path = $file->storeAs('TerrainsImgaes', $name);
+                $path = $file->storeAs('TerrainsImages', $name, 'public');
                 if (!Image::create([
-                    "ImgPath" => $path,
+                    "ImgPath" => '/storage/' . $path,
                     "ismain" => false,
                     "terrain_id" => $terrain->id,
                 ])) {

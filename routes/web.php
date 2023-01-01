@@ -47,6 +47,9 @@ Route::put("/ville/update", [VilleController::class, "update"])->name("ville:upd
 Route::put("/terrain/update", [TerrainController::class, "update"])->name("terrain:update");
 
 
+Route::put("image/setmain/{image}", [ImageController::class, "setmain"])->name("image:setmain");
+
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::resource('terrain', TerrainController::class);

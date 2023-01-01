@@ -194,7 +194,7 @@
 
 
         <div class="col-sm-12">
-          <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Submit</button>
+          <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Save changes</button>
           <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
         </div>
       </form>
@@ -300,7 +300,7 @@
 
 
             <div class="col-sm-12">
-            <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Submit</button>
+            <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Save changes</button>
             <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
             </div>
         </form>
@@ -308,7 +308,6 @@
     </div>
     @endcan
 @endhasrole
-    <!--/ DataTable with Buttons -->
 @endsection
 
 @section("page.css")

@@ -66,7 +66,7 @@
             <li class="menu-item">
                 <a href="{{ route('ville.index') }}" class="menu-link ">
                 <i class="menu-icon tf-icons ti ti-layout-grid"></i>
-                <div data-i18n="Villes">Villes</div>
+                <div data-i18n="Villes">Cities</div>
                 </a>
             </li>
           @else
@@ -74,7 +74,7 @@
             <li class="menu-item">
                 <a href="{{ route('ville.index') }}" class="menu-link ">
                 <i class="menu-icon tf-icons ti ti-layout-grid"></i>
-                <div data-i18n="Villes">Villes</div>
+                <div data-i18n="Villes">Cities</div>
                 </a>
             </li>
             @endcan

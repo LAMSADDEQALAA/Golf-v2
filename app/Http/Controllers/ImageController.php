@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -23,9 +26,31 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            "file" => "required",
+        ]);
 
+        $files = $request->file('file');
+        if ($files) {
+            foreach ($files as $file) {
+                $name = $file->getClientOriginalName();
+                $path = $file->storeAs('TerrainsImages', $name, 'public');
+                if (!Image::create([
+                    "ImgPath" => '/storage/' . $path,
+                    "ismain" => false,
+                    "terrain_id" => $request->terrain_id,
+                ])) {
+                    Session::flash('message', 'Error occured while Adding Images Associated with the Terrain');
+                    Session::flash('message_type', 'danger');
+                    return redirect()
+                        ->back();
+                }
+            }
+        }
+        Session::flash('message', 'Images were Added to The terrain Collection');
+        Session::flash('message_type', 'success');
+        return redirect()->back();
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -35,6 +60,35 @@ class ImageController extends Controller
      */
     public function destroy(Image $image)
     {
-        //
+        try {
+            if (Storage::delete($image->ImgPath)) {
+                dd("it's working");
+            }
+
+            Image::find($image->id)->delete();
+
+            Session::flash('message', 'Image Deleted SuccessFuly');
+            Session::flash('message_type', 'success');
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            Session::flash('message', 'Error Occured While deleting the image');
+            Session::flash('message_type', 'danger');
+            return redirect()
+                ->back();
+        }
+    }
+    public function setmain(Image $image)
+    {
+        Image::where("ismain", 1)->update(["ismain" => false]);
+
+        if (!$image->update(["ismain" => true])) {
+            Session::flash('message', 'Error occured while Setting Image As the main image');
+            Session::flash('message_type', 'danger');
+            return redirect()
+                ->back();
+        }
+        Session::flash('message', 'Image was set As main');
+        Session::flash('message_type', 'success');
+        return redirect()->back();
     }
 }

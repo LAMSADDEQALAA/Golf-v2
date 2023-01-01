@@ -211,6 +211,7 @@
                       type="text"
                       name="role"
                       id="Role-Add"
+                      value="{{ old("role") }}"
                       class="form-control"
                       placeholder="Enter Name"
                     />
@@ -236,7 +237,7 @@
               <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                 Close
               </button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             </form>
           </div>
@@ -309,6 +310,7 @@
                       type="text"
                       name="role"
                       id="Role-Add"
+                      value="{{ old("role") }}"
                       class="form-control"
                       placeholder="Enter Name"
                     />
@@ -334,7 +336,7 @@
               <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                 Close
               </button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             </form>
           </div>

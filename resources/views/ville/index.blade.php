@@ -117,6 +117,7 @@
                         <input
                         type="text"
                         name="ville"
+                        value="{{ old("ville") }}"
                         id="nameWithTitle"
                         class="form-control"
                         placeholder="Enter Name"
@@ -128,7 +129,7 @@
                 <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                     Close
                 </button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
             </div>
@@ -200,6 +201,7 @@
                         <input
                         type="text"
                         name="ville"
+                        value="{{ old("ville") }}"
                         id="nameWithTitle"
                         class="form-control"
                         placeholder="Enter Name"
@@ -211,7 +213,7 @@
                 <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                     Close
                 </button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
             </div>

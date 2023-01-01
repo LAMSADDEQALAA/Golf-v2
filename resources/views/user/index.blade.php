@@ -225,6 +225,7 @@
                         type="text"
                         name="email"
                         id="email"
+                        value="{{ old("email") }}"
                         class="form-control"
                         placeholder="Enter Name"
                         />
@@ -271,7 +272,7 @@
                 <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                     Close
                 </button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
             </form>

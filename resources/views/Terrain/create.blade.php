@@ -86,6 +86,7 @@
                           class="form-control"
                           id="Nom"
                           name="nom"
+                          value="{{ old("nom") }}"
                           placeholder="Nom..."
                         />
                       </div>
@@ -96,6 +97,7 @@
                           name="email"
                           class="form-control"
                           id="Email"
+                          value="{{ old("email") }}"
                           placeholder="email..."
                         />
                       </div>
@@ -106,16 +108,17 @@
                           class="form-control"
                           name="region"
                           id="Region"
+                          value="{{ old("Region") }}"
                           placeholder="address..."
                         />
                       </div>
                       <div class="mb-3">
                         <label for="phone1" class="form-label">Phone Number 1</label>
-                        <input id="phone1" type="number" class="form-control" name="phone1" placeholder="Phone Number 1..." />
+                        <input id="phone1" type="number" class="form-control" value="{{ old("phone1") }}" name="phone1" placeholder="Phone Number 1..." />
                       </div>
                       <div class="mb-3">
                         <label for="phone2" class="form-label">Phone Number 2<span class="text-secondary opacity-25"> (optional)</span></label>
-                        <input id="phone2" type="number" class="form-control" name="phone2" placeholder="Phone Number 2..." />
+                        <input id="phone2" type="number" class="form-control" value="{{ old("phone2") }}"  name="phone2" placeholder="Phone Number 2..." />
                       </div>
                       <div class="row">
                         <div class="col-2 mb-3">
@@ -123,6 +126,7 @@
                             <input
                               type="text"
                               name="par"
+                              value="{{ old("par") }}"
                               class="form-control"
                               id="Par"
                               placeholder="Par..."
@@ -133,6 +137,7 @@
                             <input
                               type="text"
                               name="lengh"
+                              value="{{ old("Lengh") }}"
                               class="form-control"
                               id="lengh"
                               placeholder="Lengh..."
@@ -143,6 +148,7 @@
                             <input
                               type="text"
                               name="NumHoles"
+                              value="{{ old("NumHoles") }}"
                               class="form-control"
                               id="NumHoles"
                               placeholder="Number of Holes..."
@@ -152,7 +158,7 @@
 
                       <div class="mb-3">
                         <label class="form-label" for="Villes">Villes</label>
-                        <select id="Villes" name="ville_id" class="select2 form-select" data-allow-clear="true">
+                        <select id="Villes" name="ville_id" value="{{ old("ville_id") }}" class="select2 form-select" data-allow-clear="true">
                             <option Selected>Please Select....</option>
                            @foreach ($villes as $ville )
                               <option value="{{ $ville->id }}">{{ $ville->nom }}</option>
@@ -161,7 +167,7 @@
                       </div>
                       <div class="mb-3">
                         <label for="Descriptions" class="form-label">Descriptions</label>
-                        <textarea class="form-control" name="description" id="Descriptions" rows="3"></textarea>
+                        <textarea class="form-control" value="{{ old("description") }}" name="description" id="Descriptions" rows="3"></textarea>
                       </div>
                     </div>
                   </div>
