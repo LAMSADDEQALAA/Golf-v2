@@ -36,7 +36,7 @@ class ImageController extends Controller
                 $name = $file->getClientOriginalName();
                 $path = $file->storeAs('TerrainsImages', $name, 'public');
                 if (!Image::create([
-                    "ImgPath" => '/storage/' . $path,
+                    "ImgPath" => $path,
                     "ismain" => false,
                     "terrain_id" => $request->terrain_id,
                 ])) {
@@ -61,10 +61,8 @@ class ImageController extends Controller
     public function destroy(Image $image)
     {
         try {
-            if (Storage::delete($image->ImgPath)) {
-                dd("it's working");
-            }
 
+            unlink(public_path("/storage/" . $image->ImgPath));
             Image::find($image->id)->delete();
 
             Session::flash('message', 'Image Deleted SuccessFuly');

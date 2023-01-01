@@ -159,7 +159,7 @@
                           </div>
                         @endif
                         <div class="card h-100">
-                        <img class="card-img-top" src="{{ asset($image->ImgPath) }}" alt="Card image cap" />
+                        <img class="card-img-top" src="{{ asset('/storage/'.$image->ImgPath) }}" alt="Card image cap" />
                         <div class="card-body d-flex">
                             <form action="{{ route("image.destroy",["image"=> $image->id]) }}" method="POST">
                                 @csrf
