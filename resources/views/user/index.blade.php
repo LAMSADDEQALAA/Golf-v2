@@ -323,12 +323,23 @@
                     </div>
                     <div class="row">
                     <div class="col mb-3">
-                        <label for="exampleFormControlReadOnlyInput1" class="form-label">New Password</label>
+                        <label for="NewPassword" class="form-label">New Password</label>
                         <input
                             class="form-control"
-                            type="text"
+                            type="password"
                             name="NewPassword"
                             id="NewPassword"
+                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                            value=""
+                        />
+                    </div>
+                    <div class="col mb-3">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input
+                            class="form-control"
+                            type="password"
+                            name="confirmPassword"
+                            id="confirmPassword"
                             placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                             value=""
                         />
@@ -403,7 +414,7 @@
         <div class="modal fade" id="add-modal"  aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             <form action="{{ route("user.store") }}" id="formAdd" class="w-100" method="post">
-            @csrf
+                @csrf
             <div class="modal-content">
                 <div class="modal-header">
                 <h5 class="modal-title" id="modalCenterTitle">User Add Form</h5>
@@ -422,6 +433,7 @@
                         type="text"
                         name="email"
                         id="email"
+                        value="{{ old("email") }}"
                         class="form-control"
                         placeholder="Enter Name"
                         />
@@ -450,8 +462,7 @@
                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                         />
                     </div>
-                </div>
-                <div class="row">
+
                     <div class="col mb-3">
                         <label for="confirmPassword" class="form-label">Confirm Password</label>
                         <input
@@ -463,12 +474,13 @@
                         />
                     </div>
                 </div>
+
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                     Close
                 </button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
             </form>

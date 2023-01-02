@@ -50,7 +50,7 @@
       </ul>
       <div class="tab-content">
         <div class="tab-pane fade show active" id="navs-pills-left-Details" role="tabpanel">
-            <h6 class="pb-1 mb-4 text-muted">Terrain Details</h6>
+            <h6 class="pb-1 mb-4 text-muted">Field Details</h6>
             <div class="mb-3">
                 <strong>
                     Name
@@ -147,7 +147,7 @@
         </div>
         <div class="tab-pane fade" id="navs-pills-left-Images" role="tabpanel">
             <div class="d-flex justify-content-between mb-4">
-                <h6 class="pb-1 mb-4 text-muted">Terrain Images</h6>
+                <h6 class="pb-1 mb-4 text-muted">Field Images</h6>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-modal"><i class="ti ti-plus me-sm-1"></i><span class="d-none d-sm-inline-block z-n1">Add New Images</span></button>
             </div>
             <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
@@ -183,7 +183,7 @@
         </div>
         <div class="tab-pane fade" id="navs-pills-left-Videos" role="tabpanel">
             <div class="d-flex justify-content-between mb-4">
-                <h6 class="pb-1 mb-4 text-muted">Terrain Videos</h6>
+                <h6 class="pb-1 mb-4 text-muted">Field Videos</h6>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-modal-video"><i class="ti ti-plus me-sm-1"></i><span class="d-none d-sm-inline-block z-n1">Add New Video Links</span></button>
             </div>
             <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
