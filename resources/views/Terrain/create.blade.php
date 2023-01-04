@@ -159,7 +159,6 @@
                       <div class="mb-3">
                         <label class="form-label" for="Villes">Villes</label>
                         <select id="Villes" name="ville_id" value="{{ old("ville_id") }}" class="select2 form-select" data-allow-clear="true">
-                            <option Selected>Please Select....</option>
                            @foreach ($villes as $ville )
                               <option value="{{ $ville->id }}">{{ $ville->nom }}</option>
                            @endforeach

@@ -91,7 +91,7 @@ if (typeof TemplateCustomizer !== "undefined") {
         cssPath: assetsPath + "/vendor/css" + (rtlSupport ? "/rtl" : "") + "/",
         themesPath:
             assetsPath + "/vendor/css" + (rtlSupport ? "/rtl" : "") + "/",
-        displayCustomizer: true,
+        displayCustomizer: false,
         // lang: 'fr',
         // defaultTheme: 2,
         // defaultStyle: 'light',
