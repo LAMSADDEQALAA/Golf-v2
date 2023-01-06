@@ -4,22 +4,23 @@
 @section('title','Details')
 
 
+@php
+$active = null;
+$tabactive = null;
+$selected = "false";
+$cond = !Session::has("VideoTab") && !Session::has("ImageTab");
+if ($cond) {
+    $active = "show active";
+    $tabactive = "active";
+    $selected = "true";
+}
+@endphp
 @section("content")
 <div class="col-xl-12">
     <div class="nav-align-left mb-4">
       <ul class="nav nav-pills me-3" role="tablist">
         <li class="nav-item">
-            @php
-            $active = null;
-            $tabactive = null;
-            $selected = "false";
-            $cond = !Session::has("VideoTab") && !Session::has("ImageTab");
-            if ($cond) {
-                $active = "show active";
-                $tabactive = "active";
-                $selected = "true";
-            }
-            @endphp
+
           <button
             type="button"
             class="nav-link {{ $tabactive }}"
