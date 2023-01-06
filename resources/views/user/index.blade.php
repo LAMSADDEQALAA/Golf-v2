@@ -313,7 +313,7 @@
                         <input type="hidden" name="id" id="id-User-edit">
                         <input
                             class="form-control"
-                            type="text"
+                            type="email"
                             name="email"
                             id="e_email"
                             placeholder="Enter Role name..."
@@ -375,11 +375,11 @@
                 <div class="modal-body">
                 <div class="row">
                     <div class="col mb-3">
-                        <label for="user-edit-role" class="form-label">user Email</label>
+                        <label for="user-edit-role" class="form-label">Email</label>
                         <input type="hidden" name="id" id="id-edit-user-role">
                         <input
                         class="form-control"
-                        type="text"
+                        type="email"
                         id="user-edit-role"
                         placeholder="Readonly input here..."
                         readonly
@@ -428,9 +428,9 @@
                 <div class="modal-body">
                 <div class="row">
                     <div class="col mb-3">
-                        <label for="email" class="form-label">User Email</label>
+                        <label for="email" class="form-label">Email</label>
                         <input
-                        type="text"
+                        type="email"
                         name="email"
                         id="email"
                         value="{{ old("email") }}"

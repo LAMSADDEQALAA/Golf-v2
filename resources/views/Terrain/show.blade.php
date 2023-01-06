@@ -9,14 +9,25 @@
     <div class="nav-align-left mb-4">
       <ul class="nav nav-pills me-3" role="tablist">
         <li class="nav-item">
+            @php
+            $active = null;
+            $tabactive = null;
+            $selected = "false";
+            $cond = !Session::has("VideoTab") && !Session::has("ImageTab");
+            if ($cond) {
+                $active = "show active";
+                $tabactive = "active";
+                $selected = "true";
+            }
+            @endphp
           <button
             type="button"
-            class="nav-link active"
+            class="nav-link {{ $tabactive }}"
             role="tab"
             data-bs-toggle="tab"
             data-bs-target="#navs-pills-left-Details"
             aria-controls="navs-pills-left-Details"
-            aria-selected="true"
+            aria-selected="{{ $selected }}"
           >
            Details
           </button>
@@ -24,12 +35,12 @@
         <li class="nav-item">
           <button
             type="button"
-            class="nav-link"
+            class="nav-link {{ Session::has("ImageTab") ? "active" : null }}"
             role="tab"
             data-bs-toggle="tab"
             data-bs-target="#navs-pills-left-Images"
             aria-controls="navs-pills-left-Images"
-            aria-selected="false"
+            aria-selected="{{ Session::has("ImageTab") ? "true" : "false" }}"
           >
             Images
           </button>
@@ -37,19 +48,19 @@
         <li class="nav-item">
           <button
             type="button"
-            class="nav-link"
+            class="nav-link {{ Session::has("VideoTab") ? "active" : null }}"
             role="tab"
             data-bs-toggle="tab"
             data-bs-target="#navs-pills-left-Videos"
             aria-controls="navs-pills-left-Videos"
-            aria-selected="false"
+            aria-selected="{{ Session::has("VideoTab") ? "true" : "false" }}"
           >
             Videos
           </button>
         </li>
       </ul>
       <div class="tab-content">
-        <div class="tab-pane fade show active" id="navs-pills-left-Details" role="tabpanel">
+        <div class="tab-pane fade {{$active}}" id="navs-pills-left-Details" role="tabpanel">
             <h6 class="pb-1 mb-4 text-muted">Field Details</h6>
             <div class="mb-3">
                 <strong>
@@ -145,7 +156,7 @@
           </div>
 
         </div>
-        <div class="tab-pane fade" id="navs-pills-left-Images" role="tabpanel">
+        <div class="tab-pane fade {{ Session::has("ImageTab") ? Session::get("ImageTab") : null }}" id="navs-pills-left-Images" role="tabpanel">
             <div class="d-flex justify-content-between mb-4">
                 <h6 class="pb-1 mb-4 text-muted">Field Images</h6>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-modal"><i class="ti ti-plus me-sm-1"></i><span class="d-none d-sm-inline-block z-n1">Add New Images</span></button>
@@ -155,7 +166,7 @@
                     <div class="col position-relative">
                         @if ($image->ismain == true)
                         <div class="position-absolute end-0 me-4 top-0 mt-4" style="z-index: 2;">
-                            <span class="badge bg-label-primary">Main</span>
+                            <span class="badge bg-label-warning">Main</span>
                           </div>
                         @endif
                         <div class="card h-100">
@@ -181,7 +192,7 @@
                 @endforelse
               </div>
         </div>
-        <div class="tab-pane fade" id="navs-pills-left-Videos" role="tabpanel">
+        <div class="tab-pane fade {{ Session::has("VideoTab") ? Session::get("VideoTab") : null }}" id="navs-pills-left-Videos" role="tabpanel">
             <div class="d-flex justify-content-between mb-4">
                 <h6 class="pb-1 mb-4 text-muted">Field Videos</h6>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-modal-video"><i class="ti ti-plus me-sm-1"></i><span class="d-none d-sm-inline-block z-n1">Add New Video Links</span></button>
@@ -190,7 +201,7 @@
                 @forelse ($terrain->Videos as $video )
                     <div class="col position-relative">
                         <div class="card">
-                            <iframe width="400" height="350" src="{{ $video->VideoUrl }}"
+                            <iframe width="400" height="350" src="https://www.youtube.com/embed/{{ $video->VideoUrl }}"
                                frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <div class="card-body d-flex">

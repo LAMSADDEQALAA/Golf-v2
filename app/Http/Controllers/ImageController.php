@@ -41,6 +41,7 @@ class ImageController extends Controller
                     "terrain_id" => $request->terrain_id,
                 ])) {
                     Session::flash('message', 'Error occured while Adding Images Associated with the Terrain');
+                    Session::flash("ImageTab", "show active");
                     Session::flash('message_type', 'danger');
                     return redirect()
                         ->back();
@@ -48,6 +49,7 @@ class ImageController extends Controller
             }
         }
         Session::flash('message', 'Images were Added to The terrain Collection');
+        Session::flash("ImageTab", "show active");
         Session::flash('message_type', 'success');
         return redirect()->back();
     }
@@ -66,10 +68,12 @@ class ImageController extends Controller
             Image::find($image->id)->delete();
 
             Session::flash('message', 'Image Deleted SuccessFuly');
+            Session::flash("ImageTab", "show active");
             Session::flash('message_type', 'success');
             return redirect()->back();
         } catch (\Throwable $th) {
             Session::flash('message', 'Error Occured While deleting the image');
+            Session::flash("ImageTab", "show active");
             Session::flash('message_type', 'danger');
             return redirect()
                 ->back();
@@ -81,11 +85,13 @@ class ImageController extends Controller
 
         if (!$image->update(["ismain" => true])) {
             Session::flash('message', 'Error occured while Setting Image As the main image');
+            Session::flash("ImageTab", "show active");
             Session::flash('message_type', 'danger');
             return redirect()
                 ->back();
         }
         Session::flash('message', 'Image was set As main');
+        Session::flash("ImageTab", "show active");
         Session::flash('message_type', 'success');
         return redirect()->back();
     }

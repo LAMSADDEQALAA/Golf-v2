@@ -34,15 +34,17 @@ class VideoController extends Controller
             foreach ($links as $link) {
                 if (!Str::contains($link->value, 'youtube')) {
                     Session::flash('message', "The link '" . $link->value . "' Provided is not A youtube Link");
+                    Session::flash("VideoTab", "show active");
                     Session::flash('message_type', 'warning');
                     return redirect()
                         ->back();
                 }
                 if (!Video::create([
-                    "VideoUrl" => str_replace("watch?v=", "embed/", $link->value),
+                    "VideoUrl" => explode("=", $link->value)[1],
                     "terrain_id" => $request->terrain_id,
                 ])) {
                     Session::flash('message', 'Error occured while Adding Video Links Associated with the Terrain');
+                    Session::flash("VideoTab", "show active");
                     Session::flash('message_type', 'danger');
                     return redirect()
                         ->back();
@@ -50,6 +52,7 @@ class VideoController extends Controller
             }
         }
         Session::flash('message', 'Video Links were Added to The terrain Collection');
+        Session::flash("VideoTab", "show active");
         Session::flash('message_type', 'success');
         return redirect()->back();
     }
@@ -66,10 +69,12 @@ class VideoController extends Controller
             Video::find($video->id)->delete();
 
             Session::flash('message', 'Video link Deleted SuccessFuly');
+            Session::flash("VideoTab", "show active");
             Session::flash('message_type', 'success');
             return redirect()->back();
         } catch (\Throwable $th) {
             Session::flash('message', 'Error Occured While deleting the Video Link');
+            Session::flash("VideoTab", "show active");
             Session::flash('message_type', 'danger');
             return redirect()
                 ->back();

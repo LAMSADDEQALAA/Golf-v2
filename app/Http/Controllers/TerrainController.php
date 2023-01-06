@@ -106,7 +106,7 @@ class TerrainController extends Controller
                         ->back();
                 }
                 if (!Video::create([
-                    "VideoUrl" => $link->value,
+                    "VideoUrl" => explode("=", $link->value)[1],
                     "terrain_id" => $terrain->id,
                 ])) {
                     Session::flash('message', 'Error occured while Adding Video Links Associated with the Terrain');

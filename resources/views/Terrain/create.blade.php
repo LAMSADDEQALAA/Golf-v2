@@ -124,7 +124,7 @@
                         <div class="col-2 mb-3">
                             <label for="Par" class="form-label">Par</label>
                             <input
-                              type="text"
+                              type="number"
                               name="par"
                               value="{{ old("par") }}"
                               class="form-control"
@@ -135,7 +135,7 @@
                           <div class="col-2 mb-3">
                             <label for="lengh" class="form-label">Lengh</label>
                             <input
-                              type="text"
+                              type="number"
                               name="lengh"
                               value="{{ old("Lengh") }}"
                               class="form-control"
@@ -146,7 +146,7 @@
                           <div class="col-2 mb-3">
                             <label for="NumHoles" class="form-label">Number of Holes</label>
                             <input
-                              type="text"
+                              type="number"
                               name="NumHoles"
                               value="{{ old("NumHoles") }}"
                               class="form-control"
