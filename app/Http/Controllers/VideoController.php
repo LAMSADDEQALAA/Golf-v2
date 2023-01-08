@@ -40,7 +40,7 @@ class VideoController extends Controller
                         ->back();
                 }
                 if (!Video::create([
-                    "VideoUrl" => explode("=", $link->value)[1],
+                    "VideoUrl" => explode("&", explode("=", $link->value, 2)[1])[0],
                     "terrain_id" => $request->terrain_id,
                 ])) {
                     Session::flash('message', 'Error occured while Adding Video Links Associated with the Terrain');

@@ -66,6 +66,7 @@ class TerrainController extends Controller
             "NumHoles" => "required",
             "ville_id" => "required",
             "description" => "required",
+            "images" => "required"
         ]);
 
         $terrain = Terrain::create($request->only("nom", "email", "region", "phone1", "phone2", "par", "lengh", "NumHoles", "description", "ville_id"));
@@ -76,7 +77,7 @@ class TerrainController extends Controller
                 ->back();
         }
         //store images and insert paths in db
-        $files = $request->file('file');
+        $files = $request->file('images');
         if ($files) {
             foreach ($files as $file) {
                 $name = $file->getClientOriginalName();
@@ -106,7 +107,7 @@ class TerrainController extends Controller
                         ->back();
                 }
                 if (!Video::create([
-                    "VideoUrl" => explode("=", $link->value)[1],
+                    "VideoUrl" => explode("&", explode("=", $link->value, 2)[1])[0],
                     "terrain_id" => $terrain->id,
                 ])) {
                     Session::flash('message', 'Error occured while Adding Video Links Associated with the Terrain');

@@ -54,7 +54,7 @@
                     <div class="card-body">
                       <div class="mb-3">
                         <label for="formFileMultiple" class="form-label">Multiple files input example</label>
-                        <input class="form-control" name="file[]" type="file" id="formFileMultiple" multiple />
+                        <input class="form-control" name="images[]" type="file" id="formFileMultiple" multiple />
                       </div>
                     </div>
                     </div>
