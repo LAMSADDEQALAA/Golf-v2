@@ -15,8 +15,7 @@ class ImageResources extends JsonResource
     public function toArray($request)
     {
         return [
-            "id" => $this->id,
-            "ImagePath" => asset($this->ImgPath),
+            "ImagePath" => asset("/storage/" . $this->ImgPath),
             "ismain" => $this->ismain,
         ];
     }

@@ -202,7 +202,7 @@ if ($cond) {
                 @forelse ($terrain->Videos as $video )
                     <div class="col position-relative">
                         <div class="card">
-                            <iframe width="400" height="350" src="https://www.youtube.com/embed/{{ $video->VideoUrl }}"
+                            <iframe width="397" height="350" src="https://www.youtube.com/embed/{{ $video->VideoUrl }}"
                                frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <div class="card-body d-flex">
