@@ -81,7 +81,7 @@ class TerrainController extends Controller
         if ($files) {
             foreach ($files as $file) {
                 $name = $file->getClientOriginalName();
-                $path = $file->storeAs('TerrainsImages', $name, 'public');
+                $path = $file->storeAs("TerrainsImages/$request->nom", $name, 'public');
                 if (!Image::create([
                     "ImgPath" => $path,
                     "ismain" => false,
